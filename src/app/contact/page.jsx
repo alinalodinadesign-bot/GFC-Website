@@ -1,6 +1,11 @@
+import Link from 'next/link';
+
 export default function ContactPage() {
   return (
     <main className="contact-page">
+      <div style={{ padding: '24px clamp(24px,6vw,80px) 0', maxWidth: 1280, margin: '0 auto' }}>
+        <Link href="/" className="back-link">← Back to Home</Link>
+      </div>
       <div className="contact-inner">
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32 }}>
           <span className="index-pill">( ✦ )</span>

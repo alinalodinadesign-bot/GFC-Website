@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { GFC_DATA } from '@/lib/data';
 
 const cardPhotos = [
@@ -12,7 +12,6 @@ const cardPhotos = [
 ];
 
 export default function ProjectsPreview() {
-  const router = useRouter();
   const projects = GFC_DATA.projects;
 
   return (
@@ -42,11 +41,11 @@ export default function ProjectsPreview() {
         padding: '0 24px',
       }}>
         {projects.map((p, i) => (
-          <div
+          <Link
             key={p.id}
+            href={`/projects/${p.id}`}
             className="project-card"
-            onClick={() => router.push('/projects/' + p.id)}
-            style={{ height: 'clamp(360px, 45vw, 560px)' }}
+            style={{ height: 'clamp(360px, 45vw, 560px)', textDecoration: 'none' }}
           >
             {/* Background image — grayscale by default, colour on hover */}
             <div
@@ -88,7 +87,7 @@ export default function ProjectsPreview() {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

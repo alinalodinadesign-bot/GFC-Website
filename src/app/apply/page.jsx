@@ -1,9 +1,30 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Arrow from '@/components/Arrow';
 import { GFC_DATA } from '@/lib/data';
+
+/* ── Floating label primitives ─────────────────────────── */
+function FloatingField({ label, req, type = 'text', ...props }) {
+  const id = useId();
+  return (
+    <div className="field field-float">
+      <input type={type} id={id} placeholder=" " {...props} />
+      <label htmlFor={id}>{label}{req && <span className="req"> *</span>}</label>
+    </div>
+  );
+}
+function FloatingTextarea({ label, ...props }) {
+  const id = useId();
+  return (
+    <div className="field field-float field-float-ta">
+      <textarea id={id} placeholder=" " {...props} />
+      <label htmlFor={id}>{label}</label>
+    </div>
+  );
+}
 
 const APPLY_RECEIVE = {
   model: [
@@ -88,22 +109,22 @@ function ApplySuccess() {
 const ModelFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>First name <span className="req">*</span></label><input type="text" placeholder="Anya" /></div>
-      <div className="field"><label>Last name <span className="req">*</span></label><input type="text" placeholder="Kovács" /></div>
+      <FloatingField label="First name" req />
+      <FloatingField label="Last name" req />
     </div>
     <div className="field-row-3">
-      <div className="field"><label>Age <span className="req">*</span></label><input type="number" placeholder="22" /></div>
-      <div className="field"><label>Nationality</label><input type="text" placeholder="Georgian" /></div>
-      <div className="field"><label>Based in</label><input type="text" placeholder="Tbilisi" /></div>
+      <FloatingField label="Age" req type="number" />
+      <FloatingField label="Nationality" />
+      <FloatingField label="Based in" />
     </div>
     <div className="field-row-3">
-      <div className="field"><label>Height (cm) <span className="req">*</span></label><input type="number" placeholder="178" /></div>
-      <div className="field"><label>Bust / Chest</label><input type="number" placeholder="84" /></div>
-      <div className="field"><label>Waist</label><input type="number" placeholder="62" /></div>
+      <FloatingField label="Height (cm)" req type="number" />
+      <FloatingField label="Bust / Chest" type="number" />
+      <FloatingField label="Waist" type="number" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="you@studio.com" /></div>
-      <div className="field"><label>Instagram</label><input type="text" placeholder="@username" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Instagram" />
     </div>
     <div className="upload">
       <div className="ic">↑</div>
@@ -119,42 +140,36 @@ const ModelFields = () => (
 const AgencyFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>Agency name <span className="req">*</span></label><input type="text" placeholder="Major Atelier" /></div>
-      <div className="field"><label>Founded</label><input type="number" placeholder="2018" /></div>
+      <FloatingField label="Agency name" req />
+      <FloatingField label="Founded" type="number" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Primary contact <span className="req">*</span></label><input type="text" placeholder="N. Marais" /></div>
-      <div className="field"><label>Role</label><input type="text" placeholder="Head of Scouting" /></div>
+      <FloatingField label="Primary contact" req />
+      <FloatingField label="Role" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="contact@agency.com" /></div>
-      <div className="field"><label>Website</label><input type="url" placeholder="agency.com" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Website" type="url" />
     </div>
-    <div className="field">
-      <label>Roster summary</label>
-      <textarea placeholder="Headcount, signed talent, recent campaigns…" />
-    </div>
+    <FloatingTextarea label="Roster summary" />
   </>
 );
 
 const DesignerFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>Brand / Studio name <span className="req">*</span></label><input type="text" placeholder="Maison Arro" /></div>
-      <div className="field"><label>Founded</label><input type="number" placeholder="2021" /></div>
+      <FloatingField label="Brand / Studio name" req />
+      <FloatingField label="Founded" type="number" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Designer name <span className="req">*</span></label><input type="text" placeholder="A. Petrosyan" /></div>
-      <div className="field"><label>Country</label><input type="text" placeholder="Armenia" /></div>
+      <FloatingField label="Designer name" req />
+      <FloatingField label="Country" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="studio@brand.com" /></div>
-      <div className="field"><label>Website / IG</label><input type="text" placeholder="brand.com" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Website / IG" />
     </div>
-    <div className="field">
-      <label>Collection statement</label>
-      <textarea placeholder="The intent, references, audience, season." />
-    </div>
+    <FloatingTextarea label="Collection statement" />
     <div className="upload">
       <div className="ic">↑</div>
       <div style={{ flex: 1 }}>
@@ -169,76 +184,76 @@ const DesignerFields = () => (
 const PhotographerFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>Name <span className="req">*</span></label><input type="text" placeholder="Davidson van de Ven" /></div>
-      <div className="field"><label>Based in</label><input type="text" placeholder="Paris" /></div>
+      <FloatingField label="Name" req />
+      <FloatingField label="Based in" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="hello@photog.com" /></div>
-      <div className="field"><label>Portfolio URL</label><input type="url" placeholder="portfolio.com" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Portfolio URL" type="url" />
     </div>
-    <div className="field"><label>Practice / Specialism</label><textarea placeholder="Portrait, runway, editorial…" /></div>
+    <FloatingTextarea label="Practice / Specialism" />
   </>
 );
 
 const MakeupFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>Name <span className="req">*</span></label><input type="text" placeholder="L. Mendes" /></div>
-      <div className="field"><label>Specialism</label><input type="text" placeholder="Editorial, runway" /></div>
+      <FloatingField label="Name" req />
+      <FloatingField label="Specialism" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="hello@kit.com" /></div>
-      <div className="field"><label>Instagram</label><input type="text" placeholder="@username" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Instagram" />
     </div>
-    <div className="field"><label>Recent credits</label><textarea placeholder="Houses, campaigns, magazines." /></div>
+    <FloatingTextarea label="Recent credits" />
   </>
 );
 
 const StylistFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>Name <span className="req">*</span></label><input type="text" placeholder="J. Yamamoto" /></div>
-      <div className="field"><label>Based in</label><input type="text" placeholder="Tokyo" /></div>
+      <FloatingField label="Name" req />
+      <FloatingField label="Based in" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="hello@studio.com" /></div>
-      <div className="field"><label>Portfolio URL</label><input type="url" placeholder="archive.com" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Portfolio URL" type="url" />
     </div>
-    <div className="field"><label>Field / Approach</label><textarea placeholder="Print, runway, set / costume…" /></div>
+    <FloatingTextarea label="Field / Approach" />
   </>
 );
 
 const SponsorFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>Company name <span className="req">*</span></label><input type="text" placeholder="Altitude Group" /></div>
-      <div className="field"><label>Sector</label><input type="text" placeholder="Hospitality" /></div>
+      <FloatingField label="Company name" req />
+      <FloatingField label="Sector" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Primary contact <span className="req">*</span></label><input type="text" placeholder="Name" /></div>
-      <div className="field"><label>Role</label><input type="text" placeholder="Head of Partnerships" /></div>
+      <FloatingField label="Primary contact" req />
+      <FloatingField label="Role" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="partnerships@brand.com" /></div>
-      <div className="field"><label>Website</label><input type="url" placeholder="brand.com" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Website" type="url" />
     </div>
-    <div className="field"><label>Partnership intent</label><textarea placeholder="Brand fit, season, scope, budget bracket." /></div>
+    <FloatingTextarea label="Partnership intent" />
   </>
 );
 
 const MediaFields = () => (
   <>
     <div className="field-row">
-      <div className="field"><label>Outlet <span className="req">*</span></label><input type="text" placeholder="L'Observé" /></div>
-      <div className="field"><label>Format</label><input type="text" placeholder="Print + digital" /></div>
+      <FloatingField label="Outlet" req />
+      <FloatingField label="Format" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Editor / Journalist <span className="req">*</span></label><input type="text" placeholder="Name" /></div>
-      <div className="field"><label>Title</label><input type="text" placeholder="Senior Editor" /></div>
+      <FloatingField label="Editor / Journalist" req />
+      <FloatingField label="Title" />
     </div>
     <div className="field-row">
-      <div className="field"><label>Email <span className="req">*</span></label><input type="email" placeholder="press@outlet.com" /></div>
-      <div className="field"><label>Coverage angle</label><input type="text" placeholder="Casting · runway · interview" /></div>
+      <FloatingField label="Email" req type="email" />
+      <FloatingField label="Coverage angle" />
     </div>
   </>
 );
@@ -278,6 +293,14 @@ export default function ApplyPage() {
 
   return (
     <main className="apply-page">
+      <div style={{ padding: '24px clamp(24px,6vw,80px) 0', maxWidth: 1440, margin: '0 auto' }}>
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-3)', textDecoration: 'none' }}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--fg-3)'}
+        >
+          ← Back to Home
+        </Link>
+      </div>
       <div className="apply-page-inner">
         <div className="apply-head">
           <div>

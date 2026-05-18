@@ -30,7 +30,7 @@ export default function Event() {
             ))}
           </div>
           <div className="event-cta">
-            <button className="btn btn-on-ink btn-arrow" onClick={() => router.push('/apply')}>Apply for the event</button>
+            <a href="#apply-cta" className="btn btn-on-ink btn-arrow" onClick={e => { e.preventDefault(); document.getElementById('apply-cta')?.scrollIntoView({ behavior: 'smooth' }); }}>Apply for the event</a>
           </div>
         </div>
       </div>

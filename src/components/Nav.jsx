@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import Logo from './Logo';
 import { GFC_DATA } from '@/lib/data';
 
@@ -31,7 +32,6 @@ export default function Nav({ mode = 'auto' }) {
 
   const isHome = pathname === '/';
   const isProject = pathname.startsWith('/projects');
-  const isApply = pathname === '/apply';
   const isContact = pathname === '/contact';
 
   const navClass = [
@@ -62,9 +62,9 @@ export default function Nav({ mode = 'auto' }) {
   return (
     <header className={navClass}>
       <div className="nav-left">
-        <button onClick={() => router.push('/')} aria-label="Global Fashion Code — Home" style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer' }}>
+        <Link href="/" aria-label="Global Fashion Code — Home" style={{ display: 'block', lineHeight: 0 }} onClick={() => { if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           <Logo />
-        </button>
+        </Link>
       </div>
 
       <nav className="nav-links" aria-label="Primary">
@@ -91,8 +91,8 @@ export default function Nav({ mode = 'auto' }) {
         <a href="#event" onClick={goAnchor('event')} className="nav-link">Upcoming Event</a>
         <a href="#gallery" onClick={goAnchor('gallery')} className="nav-link">Gallery</a>
         <a href="#partners" onClick={goAnchor('partners')} className="nav-link">Partners</a>
-        <a href="/apply" onClick={(e) => { e.preventDefault(); router.push('/apply'); }} className={`nav-link ${isApply ? 'is-active' : ''}`}>Apply</a>
-        <a href="/contact" onClick={(e) => { e.preventDefault(); router.push('/contact'); }} className={`nav-link ${isContact ? 'is-active' : ''}`}>Contact</a>
+        <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link">Apply</a>
+        <Link href="/contact" className={`nav-link ${isContact ? 'is-active' : ''}`}>Contact</Link>
       </nav>
 
       <div className="nav-right">
@@ -101,7 +101,7 @@ export default function Nav({ mode = 'auto' }) {
           <span className="sep">/</span>
           <button className={lang === 'ru' ? 'is-active' : ''} onClick={() => setLang('ru')}>RU</button>
         </div>
-        <a href="/apply" onClick={(e) => { e.preventDefault(); router.push('/apply'); }} className="nav-link" style={{ borderBottom: '1px solid currentColor', paddingBottom: 4 }}>
+        <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link" style={{ borderBottom: '1px solid currentColor', paddingBottom: 4 }}>
           Apply now
         </a>
         <NavMobileToggle isLight={isOver} />

@@ -53,7 +53,7 @@ export default function Hero() {
           <button
             className="btn btn-ghost-on-ink btn-lg"
             style={{ borderColor: 'rgba(255,255,255,0.5)', gap: 20 }}
-            onClick={() => router.push('/apply')}
+            onClick={() => document.getElementById('apply-cta')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Apply Now <Arrow size={66} />
           </button>

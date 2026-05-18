@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Arrow from '@/components/Arrow';
 import { GFC_DATA } from '@/lib/data';
 
@@ -14,6 +15,16 @@ export default function ProjectDetailPage() {
 
   return (
     <main className="proj">
+      {/* Back link */}
+      <div style={{ padding: '24px clamp(24px,6vw,80px) 0' }}>
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-3)', textDecoration: 'none' }}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--fg-3)'}
+        >
+          ← Back to Home
+        </Link>
+      </div>
+
       <section className="proj-hero">
         <div className="left">
           <div>
@@ -32,7 +43,7 @@ export default function ProjectDetailPage() {
           <div>
             <p className="concept">{p.tagline}</p>
             <div style={{ marginTop: 32, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-              <button className="btn btn-arrow" onClick={() => router.push('/apply')}>Apply for this universe</button>
+              <Link href="/apply" className="btn btn-arrow">Apply for this universe</Link>
               <a className="link-line" onClick={() => { router.push('/'); setTimeout(() => { const el = document.getElementById('event'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 80); }} style={{ cursor: 'pointer' }}>
                 See upcoming event <Arrow size={45} />
               </a>
@@ -117,11 +128,11 @@ export default function ProjectDetailPage() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }} className="proj-others">
             {others.map(o => (
-              <a
+              <Link
                 key={o.id}
+                href={`/projects/${o.id}`}
                 className="project-card"
-                onClick={() => router.push('/projects/' + o.id)}
-                style={{ cursor: 'pointer' }}
+                style={{ textDecoration: 'none' }}
               >
                 <div className="frame" style={{ aspectRatio: '3/4', background: 'var(--ink-3)' }}>
                   <img src={o.thumb} alt={o.name} loading="lazy" />
@@ -131,7 +142,7 @@ export default function ProjectDetailPage() {
                   <span>{o.location}</span>
                 </div>
                 <h3 style={{ color: 'var(--paper)' }}>{o.name}</h3>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
