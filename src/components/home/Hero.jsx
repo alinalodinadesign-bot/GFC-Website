@@ -25,11 +25,11 @@ export default function Hero() {
       }}>
         <div style={{ flex: 1 }} />
 
-        {/* Fashion Call — над заголовком */}
-        <div className="hero-anim-script" style={{ textAlign: 'center', marginBottom: '-0.18em', marginTop: 24, pointerEvents: 'none' }}>
+        {/* Fashion Call — над заголовком (десктоп); на мобилке скрыт */}
+        <div className="hero-anim-script hero-script-wrap hero-script-desktop" style={{ textAlign: 'center', marginBottom: '-0.18em', marginTop: 24, pointerEvents: 'none' }}>
           <span style={{
             fontFamily: 'var(--font-script)',
-            fontSize: 118,
+            fontSize: 'clamp(20px, 8.5vw, 118px)',
             lineHeight: 1,
             color: '#F3D883',
           }}>
@@ -47,6 +47,19 @@ export default function Hero() {
           }}>
             {t('eyebrowLeft')}
           </span>
+
+          {/* Fashion Call — только на мобилке, между ( GLOBAL FASHION CODE ) и h1 */}
+          <div className="hero-script-mobile" style={{ pointerEvents: 'none', textAlign: 'center' }}>
+            <span style={{
+              fontFamily: 'var(--font-script)',
+              fontSize: 'clamp(20px, 8.5vw, 118px)',
+              lineHeight: 1,
+              color: '#F3D883',
+            }}>
+              {t('scriptLine')}
+            </span>
+          </div>
+
           <h1 className="hero-headline hero-anim-h1" style={{ textAlign: 'center', lineHeight: 0.92, margin: 0 }}>
             {t('line1')}<br /><em>{t('line2')}</em><br />{t('line3')}
           </h1>

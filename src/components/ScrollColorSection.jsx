@@ -19,10 +19,13 @@ import { useEffect, useRef } from 'react';
  */
 export default function ScrollColorSection({
   children,
-  colorFrom  = '#ffffff',
-  colorTo    = '#000000',
-  threshold  = 0.93,
-  style      = {},
+  colorFrom       = '#ffffff',
+  colorTo         = '#000000',
+  threshold       = 0.93,
+  thresholdMobile = null,  // overrides threshold on screens ≤ 768px
+  band            = null,  // transition zone width (null = full remaining range)
+  bandMobile      = null,  // overrides band on screens ≤ 768px
+  style           = {},
 }) {
   const ref = useRef(null);
 
@@ -34,6 +37,10 @@ export default function ScrollColorSection({
       const rect = el.getBoundingClientRect();
       const vh   = window.innerHeight;
 
+      const isMobile = window.innerWidth <= 768;
+      const activeThreshold = (isMobile && thresholdMobile !== null) ? thresholdMobile : threshold;
+      const activeBand      = (isMobile && bandMobile      !== null) ? bandMobile      : band;
+
       let rawProgress;
       if (rect.height >= vh) {
         // Tall section: tracks how far user has scrolled through it
@@ -43,9 +50,10 @@ export default function ScrollColorSection({
         rawProgress = Math.min(1, Math.max(0, -rect.top / rect.height));
       }
 
-      const progress = rawProgress < threshold
+      const zone = activeBand ?? (1 - activeThreshold);
+      const progress = rawProgress < activeThreshold
         ? 0
-        : (rawProgress - threshold) / (1 - threshold);
+        : Math.min(1, (rawProgress - activeThreshold) / zone);
 
       el.style.backgroundColor = lerpColor(colorFrom, colorTo, easeInOut(progress));
     };
@@ -53,7 +61,7 @@ export default function ScrollColorSection({
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [colorFrom, colorTo, threshold]);
+  }, [colorFrom, colorTo, threshold, thresholdMobile, band, bandMobile]);
 
   return (
     <div
