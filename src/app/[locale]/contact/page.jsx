@@ -49,7 +49,7 @@ export default async function ContactPage() {
           {/* Right — photo */}
           <div className="contact-photo">
             <img
-              src="/images/contact/photo.jpg"
+              src="/images/contact/photo.webp"
               alt="GFC — From the floor"
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
             />

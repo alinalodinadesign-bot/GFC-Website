@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="hero" id="top">
       <div
         className="hero-media"
-        style={{ backgroundImage: `url('/images/hero/bg.jpg')` }}
+        style={{ backgroundImage: `url('/images/hero/bg.webp')` }}
         role="img"
         aria-label="Global Fashion Code — Hero"
       />
@@ -25,8 +25,8 @@ export default function Hero() {
       }}>
         <div style={{ flex: 1 }} />
 
-        {/* Fashion Call — над заголовком, центр */}
-        <div style={{ textAlign: 'center', marginBottom: '-0.18em', marginTop: 24, pointerEvents: 'none' }}>
+        {/* Fashion Call — над заголовком */}
+        <div className="hero-anim-script" style={{ textAlign: 'center', marginBottom: '-0.18em', marginTop: 24, pointerEvents: 'none' }}>
           <span style={{
             fontFamily: 'var(--font-script)',
             fontSize: 118,
@@ -37,9 +37,9 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* H1 + боковые подписи — на одном уровне */}
+        {/* H1 + боковые подписи */}
         <div className="hero-headline-wrap" style={{ position: 'relative', marginBottom: 140 }}>
-          <span className="hero-meta-left" style={{
+          <span className="hero-meta-left hero-anim-meta" style={{
             position: 'absolute', left: 0,
             top: '50%', transform: 'translateY(-50%)',
             fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7,
@@ -47,10 +47,10 @@ export default function Hero() {
           }}>
             {t('eyebrowLeft')}
           </span>
-          <h1 className="hero-headline" style={{ textAlign: 'center', lineHeight: 0.92, margin: 0 }}>
+          <h1 className="hero-headline hero-anim-h1" style={{ textAlign: 'center', lineHeight: 0.92, margin: 0 }}>
             {t('line1')}<br /><em>{t('line2')}</em><br />{t('line3')}
           </h1>
-          <span className="hero-meta-right" style={{
+          <span className="hero-meta-right hero-anim-meta" style={{
             position: 'absolute', right: 0,
             top: '50%', transform: 'translateY(-50%)',
             fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7,
@@ -60,8 +60,8 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* CTA row — Apply Now centered, Scroll down right */}
-        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {/* CTA */}
+        <div className="hero-anim-cta" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <button
             className="btn btn-ghost-on-ink btn-lg"
             style={{ borderColor: 'rgba(255,255,255,0.5)', gap: 20 }}

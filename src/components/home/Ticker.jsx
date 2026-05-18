@@ -3,7 +3,7 @@ export default function Ticker() {
   return (
     <div style={{ background: 'var(--paper)', padding: '32px 0', overflow: 'hidden', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
       <div style={{ overflow: 'hidden' }}>
-        <div style={{ display: 'inline-block', whiteSpace: 'nowrap', animation: 'marquee 40s linear infinite' }}>
+        <div style={{ display: 'inline-block', whiteSpace: 'nowrap', animation: 'marquee 80s linear infinite' }}>
           <span className="t-meta" style={{ color: 'var(--fg-1)' }}>{text}{text}{text}</span>
         </div>
       </div>

@@ -135,7 +135,7 @@ export default function ApplyCta({ project = null }) {
   const errFormat = t('errors.emailFormat');
 
   return (
-    <section id="apply-cta" style={{ background: 'var(--ink)', color: 'var(--paper)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+    <section id="apply-cta" style={{ background: 'transparent', color: 'var(--paper)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
       <div style={{ padding: 'clamp(64px,8vw,96px) clamp(24px,4vw,64px)', maxWidth: 1280, margin: '0 auto' }}>
         <div className="apply-cta-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(48px,6vw,96px)', alignItems: submitted ? 'stretch' : 'flex-end', justifyContent: 'space-between' }}>
 
@@ -162,7 +162,7 @@ export default function ApplyCta({ project = null }) {
             </p>
             <img
               className="apply-cta-img"
-              src="/images/apply/apply.jpg"
+              src="/images/apply/apply.webp"
               alt="Application"
               loading="lazy"
               style={{ width: 'clamp(120px,15vw,200px)', aspectRatio: '225/337', objectFit: 'cover', display: 'block' }}
@@ -176,7 +176,7 @@ export default function ApplyCta({ project = null }) {
               /* ── Success: full-bleed image with text overlay ── */
               <div style={{ position: 'relative', width: 653, height: 756, overflow: 'hidden' }}>
                 <img
-                  src="/images/apply/success.jpg"
+                  src="/images/apply/success.webp"
                   alt=""
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                 />

@@ -4,7 +4,7 @@ export default async function About() {
   const t = await getTranslations('about');
 
   return (
-    <section id="about" style={{ background: 'var(--paper)' }}>
+    <section id="about" style={{ background: 'transparent' }}>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
 
         {/* Left panel */}
@@ -36,7 +36,7 @@ export default async function About() {
           </div>
 
           <img
-            src="/images/about/about-portrait.jpg"
+            src="/images/about/about-portrait.webp"
             alt="About GFC"
             loading="lazy"
             style={{ width: 'clamp(140px, 18vw, 225px)', aspectRatio: '225/337', objectFit: 'cover' }}
@@ -50,7 +50,7 @@ export default async function About() {
         {/* Right panel — large image */}
         <div className="about-large-img" style={{ flex: '1 1 360px', minHeight: 560 }}>
           <img
-            src="/images/about/about-main.jpg"
+            src="/images/about/about-main.webp"
             alt="Fashion editorial"
             loading="lazy"
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}

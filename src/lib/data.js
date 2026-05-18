@@ -121,7 +121,7 @@ export const GFC_DATA = {
     title: "Fashion Discovery Stage",
     place: "Batumi · Georgia",
     date: "7 — 9 May 2026",
-    poster: "/images/event/event-poster.jpg",
+    poster: "/images/event/event-poster.webp",
     categories: [
       { n: "01", l: "Runway Shows" },
       { n: "02", l: "International Castings" },

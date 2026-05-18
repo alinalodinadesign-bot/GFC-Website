@@ -6,18 +6,32 @@ import Event from '@/components/home/Event';
 import GalleryPreview from '@/components/home/GalleryPreview';
 import Partners from '@/components/home/Partners';
 import ApplyCta from '@/components/home/ApplyCta';
+import ScrollColorSection from '@/components/ScrollColorSection';
 
 export default function HomePage() {
   return (
     <main>
       <Hero />
       <Ticker />
-      <About />
+
+      {/* White → Dark: fires at the very end of scrolling through About */}
+      <ScrollColorSection colorFrom="#ffffff" colorTo="#0a0a0a" threshold={0.93}>
+        <About />
+      </ScrollColorSection>
+
       <ProjectsPreview />
       <Event />
-      <GalleryPreview />
+      {/* Dark → White: short section formula, fires when half scrolled past viewport top */}
+      <ScrollColorSection colorFrom="#0a0a0a" colorTo="#ffffff" threshold={0.5}>
+        <GalleryPreview />
+      </ScrollColorSection>
+
       <Partners />
-      <ApplyCta />
+
+      {/* stays dark — Apply form is already styled for dark background */}
+      <ScrollColorSection colorFrom="#0a0a0a" colorTo="#0a0a0a">
+        <ApplyCta />
+      </ScrollColorSection>
     </main>
   );
 }

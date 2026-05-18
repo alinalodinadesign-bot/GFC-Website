@@ -622,6 +622,78 @@ a { color: inherit; text-decoration: none; }
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* ── Light-based section transitions ─────────────────── */
+/* Handled by ScrollColorSection.jsx via JS scroll listener */
+
+/* ── Premium animations ───────────────────────────────── */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hero load sequence */
+.hero-anim-script {
+  animation: hero-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+.hero-anim-h1 {
+  animation: hero-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+.hero-anim-meta {
+  animation: hero-fade-in 0.8s ease 0.6s both;
+}
+.hero-anim-cta {
+  animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+}
+
+/* Button hover — subtle lift */
+.btn {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease !important;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Link-line hover — smooth opacity */
+.link-line {
+  transition: opacity 0.2s ease;
+}
+.link-line:hover {
+  opacity: 0.65;
+}
+
+/* Project cards — lift on hover */
+.project-card {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.project-card:hover {
+  transform: translateY(-6px) !important;
+}
+
+/* Nav links — smooth fade */
+.nav-link {
+  transition: opacity 0.2s ease, color 0.2s ease !important;
+}
+
+/* Contact list links */
+.contact-list .link-line {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.contact-list .link-line:hover {
+  opacity: 0.6;
+  transform: translateX(4px);
+}
 @keyframes gallery-filmstrip {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -1014,8 +1086,7 @@ a { color: inherit; text-decoration: none; }
 
 .partners {
   padding: var(--s-32) var(--gutter);
-  background: var(--paper);
-  border-top: 1px solid var(--ink);
+  background: #ffffff;
 }
 .partners-head {
   display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 32px;

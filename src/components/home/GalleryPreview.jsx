@@ -43,8 +43,8 @@ export default function GalleryPreview({ title = null }) {
     return () => window.removeEventListener('keydown', fn);
   }, [lb]);
 
-  /* filmstrip speed: ~3.5 s per photo, min 20 s */
-  const duration = Math.max(photos.length * 3.5, 20);
+  /* filmstrip speed: ~7 s per photo, min 40 s */
+  const duration = Math.max(photos.length * 7, 40);
 
   /* tab pill */
   const tabStyle = active => ({
@@ -73,7 +73,7 @@ export default function GalleryPreview({ title = null }) {
   };
 
   return (
-    <section id="gallery" style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
+    <section id="gallery" style={{ background: 'transparent', color: 'var(--paper)' }}>
 
       {/* Header */}
       <div style={{ padding: '64px 24px 32px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>

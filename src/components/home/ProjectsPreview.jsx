@@ -25,7 +25,7 @@ export default function ProjectsPreview() {
           <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>{t('label')}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, maxWidth: 960, margin: '0 auto' }}>
-          <h2 className="t-display-md" style={{ textAlign: 'center', color: 'var(--paper)', margin: 0, fontSize: 'clamp(48px, 6.5vw, 80px)', width: '100%' }}>
+          <h2 className="t-display-md" style={{ textAlign: 'center', color: 'var(--paper)', margin: 0, fontSize: 'clamp(40px, 5vw, 60px)', width: '100%' }}>
             {t('titleLine1')}<br />
             <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em>
           </h2>

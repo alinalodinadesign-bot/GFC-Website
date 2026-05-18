@@ -35,6 +35,7 @@ const gardena = localFont({
 
 export const metadata = {
   title: 'Global Fashion Code',
+  // Hero image preloaded via <link rel="preload"> below
   description: 'An exclusive three-day fashion event — connecting talent with opportunity.',
 };
 
@@ -44,6 +45,9 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages();
   return (
     <html lang={locale} className={`${hanken.variable} ${prata.variable} ${gardena.variable}`}>
+      <head>
+        <link rel="preload" as="image" href="/images/hero/bg.webp" type="image/webp" />
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <Nav />
