@@ -1,17 +1,18 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter, usePathname, Link } from '@/i18n/navigation';
 import Logo from './Logo';
 import { GFC_DATA } from '@/lib/data';
 
 export default function Nav({ mode = 'auto' }) {
   const router = useRouter();
   const pathname = usePathname();
+  const locale = useLocale();
+  const t = useTranslations('nav');
   const [atTop, setAtTop] = useState(true);
   const [showProjects, setShowProjects] = useState(false);
-  const [lang, setLang] = useState('en');
   const projectsRef = useRef(null);
 
   useEffect(() => {
@@ -59,6 +60,10 @@ export default function Nav({ mode = 'auto' }) {
     }
   };
 
+  const switchLocale = (newLocale) => {
+    router.replace(pathname, { locale: newLocale });
+  };
+
   return (
     <header className={navClass}>
       <div className="nav-left">
@@ -73,10 +78,10 @@ export default function Nav({ mode = 'auto' }) {
             className={`nav-link ${isProject ? 'is-active' : ''}`}
             onClick={(e) => { e.stopPropagation(); setShowProjects((v) => !v); }}
           >
-            Projects <span style={{ opacity: 0.6, marginLeft: 4, fontSize: 9 }}>▾</span>
+            {t('projects')} <span style={{ opacity: 0.6, marginLeft: 4, fontSize: 9 }}>▾</span>
           </button>
           <div className={`projects-dropdown ${showProjects ? 'is-open' : ''}`}>
-            <div className="projects-dropdown-label">(Five universes)</div>
+            <div className="projects-dropdown-label">{t('projectsDropdownLabel')}</div>
             <ul>
               {GFC_DATA.projects.map((p) => (
                 <li key={p.id} onClick={() => { router.push('/projects/' + p.id); setShowProjects(false); }}>
@@ -87,22 +92,22 @@ export default function Nav({ mode = 'auto' }) {
             </ul>
           </div>
         </div>
-        <a href="#about" onClick={goAnchor('about')} className="nav-link">About</a>
-        <a href="#event" onClick={goAnchor('event')} className="nav-link">Upcoming Event</a>
-        <a href="#gallery" onClick={goAnchor('gallery')} className="nav-link">Gallery</a>
-        <a href="#partners" onClick={goAnchor('partners')} className="nav-link">Partners</a>
-        <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link">Apply</a>
-        <Link href="/contact" className={`nav-link ${isContact ? 'is-active' : ''}`}>Contact</Link>
+        <a href="#about" onClick={goAnchor('about')} className="nav-link">{t('about')}</a>
+        <a href="#event" onClick={goAnchor('event')} className="nav-link">{t('event')}</a>
+        <a href="#gallery" onClick={goAnchor('gallery')} className="nav-link">{t('gallery')}</a>
+        <a href="#partners" onClick={goAnchor('partners')} className="nav-link">{t('partners')}</a>
+        <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link">{t('apply')}</a>
+        <Link href="/contact" className={`nav-link ${isContact ? 'is-active' : ''}`}>{t('contact')}</Link>
       </nav>
 
       <div className="nav-right">
         <div className="nav-lang" aria-label="Language">
-          <button className={lang === 'en' ? 'is-active' : ''} onClick={() => setLang('en')}>EN</button>
+          <button className={locale === 'en' ? 'is-active' : ''} onClick={() => switchLocale('en')}>EN</button>
           <span className="sep">/</span>
-          <button className={lang === 'ru' ? 'is-active' : ''} onClick={() => setLang('ru')}>RU</button>
+          <button className={locale === 'ru' ? 'is-active' : ''} onClick={() => switchLocale('ru')}>RU</button>
         </div>
         <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link" style={{ borderBottom: '1px solid currentColor', paddingBottom: 4 }}>
-          Apply now
+          {t('applyNow')}
         </a>
         <NavMobileToggle isLight={isOver} />
       </div>

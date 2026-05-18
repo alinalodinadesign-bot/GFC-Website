@@ -1,6 +1,7 @@
 'use client';
 
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { GFC_DATA } from '@/lib/data';
 
 const cardPhotos = [
@@ -12,6 +13,7 @@ const cardPhotos = [
 ];
 
 export default function ProjectsPreview() {
+  const t = useTranslations('projects');
   const projects = GFC_DATA.projects;
 
   return (
@@ -19,22 +21,22 @@ export default function ProjectsPreview() {
       {/* Header */}
       <div style={{ padding: '0 24px', marginBottom: 56 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginBottom: 32 }}>
-          <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>( 02 )</span>
-          <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>Our projects</span>
+          <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>{t('index')}</span>
+          <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>{t('label')}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, maxWidth: 960, margin: '0 auto' }}>
           <h2 className="t-display-md" style={{ textAlign: 'center', color: 'var(--paper)', margin: 0, fontSize: 'clamp(48px, 6.5vw, 80px)', width: '100%' }}>
-            Platforms that create<br />
-            <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>opportunities</em>
+            {t('titleLine1')}<br />
+            <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em>
           </h2>
           <p style={{ color: 'var(--on-ink-2)', textAlign: 'center', fontSize: 14, lineHeight: 1.6, maxWidth: 480, margin: 0 }}>
-            Each project works as a separate fashion universe with its own visual language, audience and industry purpose.
+            {t('subtitle')}
           </p>
         </div>
       </div>
 
       {/* Grid — 5 cards */}
-      <div style={{
+      <div className="projects-grid-scroll" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(5, 1fr)',
         gap: 8,
@@ -83,7 +85,7 @@ export default function ProjectsPreview() {
               </span>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 <span style={{ color: 'var(--paper)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', borderBottom: '1px solid rgba(255,255,255,0.5)', paddingBottom: 2 }}>
-                  Discover more
+                  {t('discoverMore')}
                 </span>
               </div>
             </div>

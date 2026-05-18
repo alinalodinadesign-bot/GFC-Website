@@ -1,9 +1,14 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 const meta = { fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' };
 const legal = { fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', cursor: 'pointer', textDecoration: 'none', transition: 'color 0.2s' };
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  const links = t.raw('links');
+
   return (
     <footer style={{ background: 'var(--ink)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
 
@@ -12,9 +17,9 @@ export default function Footer() {
 
         {/* top meta row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 16 }}>
-          <span style={meta}>( 07 )</span>
-          <span style={meta}>Join our world</span>
-          <span style={meta}>( GFC )</span>
+          <span style={meta}>{t('index')}</span>
+          <span style={meta}>{t('tagline')}</span>
+          <span style={meta}>{t('tag')}</span>
         </div>
 
         {/* big name */}
@@ -56,7 +61,7 @@ export default function Footer() {
         gap: 16,
       }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px 24px' }}>
-          {['Privacy Policy', 'Terms & Conditions', 'Photos & Video Content', 'Media & Press Notice'].map(label => (
+          {links.map(label => (
             <a
               key={label}
               href="#"
@@ -68,7 +73,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <span style={{ ...meta, opacity: 0.35 }}>© 2026 Global Fashion Code</span>
+        <span style={{ ...meta, opacity: 0.35 }}>{t('copyright')}</span>
       </div>
 
     </footer>

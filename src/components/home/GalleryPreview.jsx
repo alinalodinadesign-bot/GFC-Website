@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import Arrow from '@/components/Arrow';
 
 const GALLERY_DATA = {
@@ -11,7 +12,8 @@ const GALLERY_DATA = {
   awards: ["gallery/awards/01.jpg","gallery/awards/02.jpg","gallery/awards/03.jpg","gallery/awards/04.jpg","gallery/awards/05.jpg","gallery/awards/06.jpg","gallery/awards/07.jpg","gallery/awards/08.jpg","gallery/awards/09.jpg","gallery/awards/10.jpg"],
 };
 
-export default function GalleryPreview() {
+export default function GalleryPreview({ title = null }) {
+  const t = useTranslations('gallery');
   const [tab, setTab] = useState('all');
   const [lb, setLb] = useState(null); /* { list, idx } */
 
@@ -66,27 +68,37 @@ export default function GalleryPreview() {
     ...extra,
   });
 
+  const tabLabel = (tabKey) => {
+    return t(`tabs.${tabKey}`);
+  };
+
   return (
     <section id="gallery" style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
 
       {/* Header */}
       <div style={{ padding: '64px 24px 32px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
-        <span className="t-meta" style={{ color: 'var(--paper)' }}>( 04 )</span>
-        <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>Gallery</span>
+        <span className="t-meta" style={{ color: 'var(--paper)' }}>{t('index')}</span>
+        <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>{t('label')}</span>
       </div>
       <div style={{ padding: '0 24px 40px', textAlign: 'center' }}>
-        <h2 className="t-display-lg" style={{ color: 'var(--paper)', margin: 0, lineHeight: 0.88 }}>
-          Digital{' '}
-          <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>Fashion</em>{' '}
-          Archive
-        </h2>
+        {title ? (
+          <h2 className="t-display-lg" style={{ color: 'var(--paper)', margin: 0, lineHeight: 0.88 }}>
+            {title}
+          </h2>
+        ) : (
+          <h2 className="t-display-lg" style={{ color: 'var(--paper)', margin: 0, lineHeight: 0.88 }}>
+            {t('title')}{' '}
+            <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em>{' '}
+            {t('titleEnd')}
+          </h2>
+        )}
       </div>
 
       {/* Tabs */}
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', padding: '0 24px 40px', justifyContent: 'center' }}>
-        {TABS.map(t => (
-          <button key={t} onClick={() => setTab(t)} style={tabStyle(tab === t)}>
-            {t === 'all' ? 'All' : t.charAt(0).toUpperCase() + t.slice(1)}
+        {TABS.map(tabKey => (
+          <button key={tabKey} onClick={() => setTab(tabKey)} style={tabStyle(tab === tabKey)}>
+            {tabLabel(tabKey)}
           </button>
         ))}
       </div>
@@ -95,7 +107,7 @@ export default function GalleryPreview() {
       {photos.length === 0 ? (
         <div style={{ padding: '80px 24px', textAlign: 'center', opacity: 0.25,
           fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
-          — No photos yet —
+          {t('empty')}
         </div>
       ) : (
         <div key={tab} style={{ overflow: 'hidden', lineHeight: 0, paddingBottom: 80 }}>

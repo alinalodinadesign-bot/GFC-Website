@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 const logos = [
   { file: "/logos/logo FDS.svg",         alt: "FDS",         h: 28 },
   { file: "/logos/logo MAG.svg",          alt: "MAG",         h: 44 },
@@ -8,21 +10,23 @@ const logos = [
   { file: "/logos/logo_makeup.svg",       alt: "Makeup",      h: 44 },
 ];
 
-export default function Partners() {
+export default async function Partners() {
+  const t = await getTranslations('partners');
+
   return (
     <section className="partners" id="partners">
       <div className="partners-head" style={{ alignItems: 'start' }}>
-        <span className="t-meta" style={{ color: 'var(--ink)', paddingTop: '0.15em' }}>( 05 )</span>
+        <span className="t-meta" style={{ color: 'var(--ink)', paddingTop: '0.15em' }}>{t('index')}</span>
         <h2 className="t-display-lg" style={{ fontSize: 'clamp(40px, 5vw, 60px)', margin: 0 }}>
-          Our Partners
+          {t('title')}
         </h2>
         <p className="t-body-sm" style={{ maxWidth: '32ch', paddingTop: '0.15em', margin: 0 }}>
-          A curated network of agencies, media, beauty houses and sponsors — invited season by season.
+          {t('description')}
         </p>
       </div>
 
       {/* Logo strip */}
-      <div style={{
+      <div className="partners-logos" style={{
         borderTop: '1px solid var(--ink)',
         paddingTop: 56,
         paddingBottom: 24,

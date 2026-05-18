@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useId } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useRouter, Link } from '@/i18n/navigation';
 import Arrow from '@/components/Arrow';
 import { GFC_DATA } from '@/lib/data';
 
@@ -293,14 +292,6 @@ export default function ApplyPage() {
 
   return (
     <main className="apply-page">
-      <div style={{ padding: '24px clamp(24px,6vw,80px) 0', maxWidth: 1440, margin: '0 auto' }}>
-        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-3)', textDecoration: 'none' }}
-          onMouseEnter={e => e.currentTarget.style.color = 'var(--ink)'}
-          onMouseLeave={e => e.currentTarget.style.color = 'var(--fg-3)'}
-        >
-          ← Back to Home
-        </Link>
-      </div>
       <div className="apply-page-inner">
         <div className="apply-head">
           <div>

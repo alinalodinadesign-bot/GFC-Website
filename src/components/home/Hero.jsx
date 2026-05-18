@@ -1,10 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import Arrow from '@/components/Arrow';
 
 export default function Hero() {
-  const router = useRouter();
+  const t = useTranslations('hero');
 
   return (
     <section className="hero" id="top">
@@ -25,26 +25,38 @@ export default function Hero() {
       }}>
         <div style={{ flex: 1 }} />
 
-        {/* H1 + meta texts — raised 100px above CTA */}
-        <div style={{ position: 'relative', marginBottom: 140 }}>
+        {/* Fashion Call — над заголовком, центр */}
+        <div style={{ textAlign: 'center', marginBottom: '-0.18em', marginTop: 24, pointerEvents: 'none' }}>
           <span style={{
+            fontFamily: 'var(--font-script)',
+            fontSize: 118,
+            lineHeight: 1,
+            color: '#F3D883',
+          }}>
+            {t('scriptLine')}
+          </span>
+        </div>
+
+        {/* H1 + боковые подписи — на одном уровне */}
+        <div className="hero-headline-wrap" style={{ position: 'relative', marginBottom: 140 }}>
+          <span className="hero-meta-left" style={{
             position: 'absolute', left: 0,
-            top: 'calc(1.5 * 80px * 0.92)', transform: 'translateY(-50%)',
+            top: '50%', transform: 'translateY(-50%)',
             fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7,
             whiteSpace: 'nowrap',
           }}>
-            ( Global Fashion Code )
+            {t('eyebrowLeft')}
           </span>
           <h1 className="hero-headline" style={{ textAlign: 'center', lineHeight: 0.92, margin: 0 }}>
-            The place where<br /><em>fashion talent</em><br />gets discovered
+            {t('line1')}<br /><em>{t('line2')}</em><br />{t('line3')}
           </h1>
-          <span style={{
+          <span className="hero-meta-right" style={{
             position: 'absolute', right: 0,
-            top: 'calc(1.5 * 80px * 0.92)', transform: 'translateY(-50%)',
+            top: '50%', transform: 'translateY(-50%)',
             fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7,
             whiteSpace: 'nowrap',
           }}>
-            ( Casting ) · ( Runway ) · ( Award )
+            {t('eyebrowRight')}
           </span>
         </div>
 
@@ -55,14 +67,14 @@ export default function Hero() {
             style={{ borderColor: 'rgba(255,255,255,0.5)', gap: 20 }}
             onClick={() => document.getElementById('apply-cta')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Apply Now <Arrow size={66} />
+            {t('applyNow')} <Arrow size={66} />
           </button>
-          <div style={{
+          <div className="hero-scroll-hint" style={{
             position: 'absolute', right: 0,
             display: 'flex', alignItems: 'center', gap: 8,
             opacity: 0.5, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase',
           }}>
-            Scroll down <Arrow size={54} rotate={45} />
+            {t('scrollDown')} <Arrow size={54} rotate={45} />
           </div>
         </div>
       </div>

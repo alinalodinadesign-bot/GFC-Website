@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "projectsDropdownLabel": "(Five universes)",
+    "about": "About",
+    "event": "Upcoming Event",
+    "gallery": "Gallery",
+    "partners": "Partners",
+    "apply": "Apply",
+    "contact": "Contact",
+    "applyNow": "Apply now"
+  },
+  "mobile": {
+    "home": "Home",
+    "close": "Close ✕",
+    "copyright": "© GFC 2026"
+  },
+  "hero": {
+    "eyebrowLeft": "( Global Fashion Code )",
+    "eyebrowRight": "( Casting ) · ( Runway ) · ( Award )",
+    "line1": "The place where",
+    "line2": "fashion talent",
+    "line3": "gets discovered",
+    "scriptLine": "Fashion Call",
+    "applyNow": "Apply Now",
+    "scrollDown": "Scroll down"
+  },
+  "about": {
+    "index": "( 01 )",
+    "label": "About",
+    "tag": "( GFC )",
+    "titleLine1": "Connecting talent",
+    "titleLine2": "with",
+    "titleEm": "opportunity",
+    "description": "Global Fashion Code is an exclusive three-day event that brings together the world's leading modeling agencies, emerging models, top designers, renowned photographers, talented makeup artists, and other key fashion industry players."
+  },
+  "projects": {
+    "index": "( 02 )",
+    "label": "Our projects",
+    "titleLine1": "Platforms that create",
+    "titleEm": "opportunities",
+    "subtitle": "Each project works as a separate fashion universe with its own visual language, audience and industry purpose.",
+    "discoverMore": "Discover more"
+  },
+  "gallery": {
+    "index": "( 04 )",
+    "label": "Gallery",
+    "title": "Digital",
+    "titleEm": "Fashion",
+    "titleEnd": "Archive",
+    "tabs": {
+      "all": "All",
+      "event": "Event",
+      "runway": "Runway",
+      "castings": "Castings",
+      "backstage": "Backstage",
+      "awards": "Awards"
+    },
+    "empty": "— No photos yet —"
+  },
+  "partners": {
+    "index": "( 05 )",
+    "title": "Our Partners",
+    "description": "A curated network of agencies, media, beauty houses and sponsors — invited season by season."
+  },
+  "apply": {
+    "index": "( 06 )",
+    "label": "Application",
+    "title": "Join",
+    "titleLine2": "the Cast",
+    "description": "Submit your portfolio for consideration at the upcoming Global Fashion Code event. We review applications from all creative disciplines to shape the future of high fashion industries.",
+    "iAm": "( I am a )",
+    "roles": ["Model", "Agency", "Designer", "Photographer", "Makeup Artist", "Stylist", "Sponsor / Partner", "Media"],
+    "fields": {
+      "name": "( Full Name )",
+      "email": "( Email Address )",
+      "country": "( Country )",
+      "instagram": "( Instagram / Portfolio Link )",
+      "about": "( Tell us about yourself )"
+    },
+    "submit": "Submit Application",
+    "sending": "Sending...",
+    "errors": {
+      "required": "Required field",
+      "emailFormat": "Invalid email address"
+    },
+    "successTitle": "Thank\nyou!",
+    "successSub": "( Your application was successfully submitted )",
+    "sendError": "Something went wrong — please try again.",
+    "networkError": "Network error — please try again."
+  },
+  "footer": {
+    "index": "( 07 )",
+    "tagline": "Join our world",
+    "tag": "( GFC )",
+    "links": ["Privacy Policy", "Terms & Conditions", "Photos & Video Content", "Media & Press Notice"],
+    "copyright": "© 2026 Global Fashion Code"
+  },
+  "contact": {
+    "eyebrow": "Contact · GFC Office",
+    "titleLine1": "Reach the",
+    "titleEm": "floor",
+    "description": "For applications, press, partnership and general enquiry — please use the channel that fits. Office hours, 09:00 — 19:00 GET, Monday to Friday.",
+    "instagram": {
+      "label": "/01 Instagram",
+      "value": "@globalfashioncode",
+      "link": "Visit ↗"
+    },
+    "email": {
+      "label": "/02 Email",
+      "value": "info@globalfashioncode.com",
+      "link": "Write ↗"
+    }
+  },
+  "projectPage": {
+    "meta": "Project / GFC Universe",
+    "applyNow": "Apply now",
+    "receiveTitle": "What participants",
+    "receiveEm": "receive",
+    "othersIndex": "( + )",
+    "othersLabel": "Other universes",
+    "othersTitle": "Four further",
+    "othersTitleEm": "universes",
+    "othersSubtitle": "Each its own audience, format, and industry purpose.",
+    "discoverMore": "Discover more",
+    "fromTheFloor": "From the floor."
+  }
+}

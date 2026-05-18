@@ -1,4 +1,8 @@
-export default function About() {
+import { getTranslations } from 'next-intl/server';
+
+export default async function About() {
+  const t = await getTranslations('about');
+
   return (
     <section id="about" style={{ background: 'var(--paper)' }}>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -12,9 +16,9 @@ export default function About() {
         }}>
           <div style={{ width: '100%', maxWidth: 590 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-              <span className="t-meta" style={{ color: 'var(--fg-3)' }}>( 01 )</span>
-              <span className="t-meta" style={{ color: 'var(--fg-3)' }}>About</span>
-              <span className="t-meta" style={{ color: 'var(--fg-3)' }}>( GFC )</span>
+              <span className="t-meta" style={{ color: 'var(--fg-3)' }}>{t('index')}</span>
+              <span className="t-meta" style={{ color: 'var(--fg-3)' }}>{t('label')}</span>
+              <span className="t-meta" style={{ color: 'var(--fg-3)' }}>{t('tag')}</span>
             </div>
             <h2 style={{
               fontFamily: 'var(--font-display)',
@@ -26,8 +30,8 @@ export default function About() {
               textAlign: 'center',
               margin: 0,
             }}>
-              Connecting talent<br />with{' '}
-              <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>opportunity</em>
+              {t('titleLine1')}<br />{t('titleLine2')}{' '}
+              <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em>
             </h2>
           </div>
 
@@ -39,13 +43,12 @@ export default function About() {
           />
 
           <p style={{ color: 'var(--fg-2)', fontSize: 15, lineHeight: 1.65, textAlign: 'center', maxWidth: 407, margin: 0 }}>
-            Global Fashion Code is an exclusive three-day event that brings together the world&apos;s leading modeling agencies,
-            emerging models, top designers, renowned photographers, talented makeup artists, and other key fashion industry players.
+            {t('description')}
           </p>
         </div>
 
         {/* Right panel — large image */}
-        <div style={{ flex: '1 1 360px', minHeight: 560 }}>
+        <div className="about-large-img" style={{ flex: '1 1 360px', minHeight: 560 }}>
           <img
             src="/images/about/about-main.jpg"
             alt="Fashion editorial"
