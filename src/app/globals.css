@@ -2074,4 +2074,17 @@ html[lang="ru"] h2 {
     word-break: break-word;
     text-align: center;
   }
+
+  /* About — RU текст значительно длиннее EN, убираем портрет и уменьшаем отступы */
+  html[lang="ru"] #about {
+    overflow-x: hidden;
+  }
+  html[lang="ru"] #about img {
+    display: none !important; /* портрет убран — экономит ~200px высоты */
+  }
+  html[lang="ru"] #about > div > div:first-child {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    gap: 20px !important;
+  }
 }

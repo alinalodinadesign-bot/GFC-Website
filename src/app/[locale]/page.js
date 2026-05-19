@@ -15,14 +15,14 @@ export default function HomePage() {
       <Ticker />
 
       {/* White → Dark: fires at the very end of scrolling through About */}
-      <ScrollColorSection colorFrom="#ffffff" colorTo="#0a0a0a" threshold={0.97} band={0.02} thresholdMobile={0.35} bandMobile={0.25}>
+      <ScrollColorSection colorFrom="#ffffff" colorTo="#0a0a0a" threshold={0.97} band={0.02} thresholdMobile={0.65} bandMobile={0.10}>
         <About />
       </ScrollColorSection>
 
       <ProjectsPreview />
       <Event />
       {/* Dark → White: short section formula, fires when half scrolled past viewport top */}
-      <ScrollColorSection colorFrom="#0a0a0a" colorTo="#ffffff" threshold={0.15} band={0.25}>
+      <ScrollColorSection colorFrom="#0a0a0a" colorTo="#ffffff" threshold={0.15} band={0.25} thresholdMobile={0.50} bandMobile={0.15}>
         <GalleryPreview />
       </ScrollColorSection>
 
