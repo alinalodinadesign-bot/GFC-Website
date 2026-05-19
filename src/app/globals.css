@@ -77,9 +77,9 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; background: var(--paper); color: var(--fg-1); }
-/* Sections packed flush — no seams between sections anywhere */
-main { display: flex; flex-direction: column; }
-main section, main > div { margin: 0 !important; }
+/* Home page only — sections packed flush, no seams */
+.home-main { display: flex; flex-direction: column; }
+.home-main section, .home-main > div { margin: 0 !important; }
 .ticker-strip { border-top: none !important; border-bottom: none !important; }
 .partners-logos { border-top: none !important; }
 #apply-cta { border-top: none !important; }

@@ -10,7 +10,7 @@ import ScrollColorSection from '@/components/ScrollColorSection';
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="home-main">
       <Hero />
       <Ticker />
 
