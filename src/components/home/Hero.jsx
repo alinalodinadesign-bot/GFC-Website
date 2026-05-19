@@ -49,7 +49,7 @@ export default function Hero() {
           </span>
 
           {/* Fashion Call — только на мобилке, между ( GLOBAL FASHION CODE ) и h1 */}
-          <div className="hero-script-mobile" style={{ pointerEvents: 'none', textAlign: 'center' }}>
+          <div className="hero-script-mobile" style={{ display: 'none', pointerEvents: 'none', textAlign: 'center' }}>
             <span style={{
               fontFamily: 'var(--font-script)',
               fontSize: 'clamp(20px, 8.5vw, 118px)',

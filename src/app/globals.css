@@ -1842,7 +1842,7 @@ a { color: inherit; text-decoration: none; }
 
   /* Mobile: show script between eyebrow and h1 (inside headline-wrap) */
   .hero-script-desktop { display: none !important; }
-  .hero-script-mobile  { display: block; margin-bottom: 8px; }
+  .hero-script-mobile  { display: block !important; margin-bottom: 8px; }
   .hero-meta-left      { order: -2; }
   .hero-script-mobile  { order: -1; }
   .hero-anim-cta       { order: 3; }

@@ -80,7 +80,7 @@ export default function Nav({ mode = 'auto' }) {
           >
             {t('projects')} <span style={{ opacity: 0.6, marginLeft: 4, fontSize: 9 }}>▾</span>
           </button>
-          <div className={`projects-dropdown ${showProjects ? 'is-open' : ''}`}>
+          <div className={`projects-dropdown ${showProjects ? 'is-open' : ''}`} style={{ display: showProjects ? 'block' : 'none' }}>
             <div className="projects-dropdown-label">{t('projectsDropdownLabel')}</div>
             <ul>
               {GFC_DATA.projects.map((p) => (

@@ -47,6 +47,15 @@ export default async function LocaleLayout({ children, params }) {
     <html lang={locale} className={`${hanken.variable} ${prata.variable} ${gardena.variable}`}>
       <head>
         <link rel="preload" as="image" href="/images/hero/bg.webp" type="image/webp" />
+        {/* Anti-FOUC: критические скрытия до загрузки внешнего CSS */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          .projects-dropdown { display: none; }
+          .hero-script-mobile { display: none; }
+          @media (max-width: 960px) {
+            .nav-links { display: none; }
+            .nav-right > *:not(.nav-mobile-toggle):not(.nav-lang) { display: none; }
+          }
+        ` }} />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
