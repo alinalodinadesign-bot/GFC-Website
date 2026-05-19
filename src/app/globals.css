@@ -720,6 +720,19 @@ a { color: inherit; text-decoration: none; }
   will-change: transform;
 }
 
+/* Safari drag mode */
+.gallery-filmstrip-drag {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.gallery-filmstrip-drag::-webkit-scrollbar { display: none; }
+.gallery-filmstrip-drag.is-dragging { cursor: grabbing; }
+
 /* ==========================================================
    SECTION: ABOUT
    ========================================================== */
