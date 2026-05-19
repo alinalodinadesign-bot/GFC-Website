@@ -38,7 +38,7 @@ export default function ScrollColorSection({
       const rect = el.getBoundingClientRect();
       const vh   = window.innerHeight;
 
-      const isMobile = window.innerWidth <= 768;
+      const isMobile = window.innerWidth <= 960;
 
       if (disableOnMobile && isMobile) {
         el.style.backgroundColor = colorFrom;
