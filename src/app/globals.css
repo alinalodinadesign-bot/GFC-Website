@@ -2075,6 +2075,11 @@ html[lang="ru"] h2 {
     text-align: center;
   }
 
+  /* About — убираем <br/> между строками h2, "С" встаёт на вторую строку */
+  html[lang="ru"] #about h2 br {
+    display: none;
+  }
+
   /* About — защита от горизонтального переполнения */
   html[lang="ru"] #about {
     overflow-x: hidden;
