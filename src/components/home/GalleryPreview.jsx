@@ -40,13 +40,14 @@ export default function GalleryPreview({ title = null }) {
 
     xRef.current = 0;
     let lastTs = null;
+    let halfWidth = 0;
+    let rafId = null;
 
     const tick = (ts) => {
       if (lastTs === null) lastTs = ts;
       const dt = (ts - lastTs) / 1000; // seconds
       lastTs = ts;
 
-      const halfWidth = track.scrollWidth / 2;
       if (halfWidth > 0) {
         const speed = halfWidth / duration; // px/s
         xRef.current -= speed * dt;
@@ -54,11 +55,19 @@ export default function GalleryPreview({ title = null }) {
         track.style.transform = `translateX(${xRef.current}px)`;
       }
 
-      rafRef.current = requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     };
 
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+    // Wait for images to render and get real dimensions before starting
+    const timer = setTimeout(() => {
+      halfWidth = track.scrollWidth / 2;
+      rafId = requestAnimationFrame(tick);
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [tab, duration]);
 
   /* lightbox */
@@ -150,8 +159,6 @@ export default function GalleryPreview({ title = null }) {
                 key={i}
                 src={p.src}
                 alt=""
-                loading="lazy"
-                decoding="async"
                 onClick={() => openLb(i % photos.length)}
                 style={{
                   height: 'clamp(320px, 44vh, 540px)',
