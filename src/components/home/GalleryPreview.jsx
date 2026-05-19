@@ -110,16 +110,11 @@ export default function GalleryPreview({ title = null }) {
           {t('empty')}
         </div>
       ) : (
-        <div key={tab} style={{ overflow: 'hidden', lineHeight: 0, paddingBottom: 80 }}>
-          <div style={{
-            display: 'flex',
-            gap: 14,
-            width: 'max-content',
-            animation: `gallery-filmstrip ${duration}s linear infinite`,
-            animationPlayState: 'running',
-            willChange: 'transform',
-            transform: 'translate3d(0, 0, 0)',
-          }}>
+        <div key={tab} className="gallery-filmstrip-wrap" style={{ lineHeight: 0, paddingBottom: 80 }}>
+          <div
+            className="gallery-filmstrip-track"
+            style={{ '--filmstrip-dur': `${duration}s` }}
+          >
             {[...photos, ...photos].map((p, i) => (
               <img
                 key={i}

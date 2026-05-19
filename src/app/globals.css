@@ -709,9 +709,36 @@ a { color: inherit; text-decoration: none; }
   opacity: 0.6;
   transform: translateX(4px);
 }
+@-webkit-keyframes gallery-filmstrip {
+  from { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  to   { -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+}
 @keyframes gallery-filmstrip {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-50%, 0, 0); }
+  from { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  to   { -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+}
+
+.gallery-filmstrip-wrap {
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  /* Safari: force GPU layer on the clipping container */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.gallery-filmstrip-track {
+  display: -webkit-flex;
+  display: flex;
+  gap: 14px;
+  width: -webkit-max-content;
+  width: max-content;
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-animation: gallery-filmstrip var(--filmstrip-dur, 80s) linear infinite;
+  animation: gallery-filmstrip var(--filmstrip-dur, 80s) linear infinite;
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
 }
 
 /* ==========================================================
