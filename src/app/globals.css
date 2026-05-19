@@ -2046,3 +2046,32 @@ html[lang="ru"] #other-universes h2 {
 html[lang="ru"] h2 {
   font-size: 50px !important;
 }
+
+/* ==========================================================
+   RUSSIAN LOCALE — MOBILE — все H2 = 40px
+   Перекрывает десктопные 50px только на экранах ≤ 960px.
+   Дублируем все ru-селекторы с нужной специфичностью.
+   ========================================================== */
+@media (max-width: 960px) {
+  html[lang="ru"] h2,
+  html[lang="ru"] .t-display-lg,
+  html[lang="ru"] .t-display-md,
+  html[lang="ru"] .event-title,
+  html[lang="ru"] .apply-cta-heading,
+  html[lang="ru"] #about h2,
+  html[lang="ru"] .about-large-img + div h2,
+  html[lang="ru"] #projects h2,
+  html[lang="ru"] footer h2,
+  html[lang="ru"] .proj h2,
+  html[lang="ru"] .proj-others-grid ~ * h2,
+  html[lang="ru"] #other-universes h2 {
+    font-size: 40px !important;
+  }
+
+  /* Hero eyebrow right — длинная строка может выходить за края на узких экранах */
+  html[lang="ru"] .hero-meta-right {
+    white-space: normal !important;
+    word-break: break-word;
+    text-align: center;
+  }
+}
