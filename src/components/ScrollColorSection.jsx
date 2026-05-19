@@ -25,6 +25,7 @@ export default function ScrollColorSection({
   thresholdMobile = null,  // overrides threshold on screens ≤ 768px
   band            = null,  // transition zone width (null = full remaining range)
   bandMobile      = null,  // overrides band on screens ≤ 768px
+  disableOnMobile = false, // if true — no transition on mobile, stays colorFrom
   style           = {},
 }) {
   const ref = useRef(null);
@@ -38,6 +39,12 @@ export default function ScrollColorSection({
       const vh   = window.innerHeight;
 
       const isMobile = window.innerWidth <= 768;
+
+      if (disableOnMobile && isMobile) {
+        el.style.backgroundColor = colorFrom;
+        return;
+      }
+
       const activeThreshold = (isMobile && thresholdMobile !== null) ? thresholdMobile : threshold;
       const activeBand      = (isMobile && bandMobile      !== null) ? bandMobile      : band;
 
