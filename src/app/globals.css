@@ -83,9 +83,9 @@ html, body { margin: 0; padding: 0; background: var(--paper); color: var(--fg-1)
 .ticker-strip { border-top: none !important; border-bottom: none !important; }
 .partners-logos { border-top: none !important; }
 
-/* Home page scroll-color effect — override section backgrounds to transparent */
-.home-main #gallery   { background: transparent !important; }
-.home-main #apply-cta { background: transparent !important; }
+/* Internal pages — Gallery + Apply always dark (components are transparent by default) */
+.proj #gallery,
+.proj #apply-cta { background: var(--ink) !important; }
 
 /* Internal pages — all H2 fixed at 60px (English) */
 .proj h2,
@@ -1951,7 +1951,7 @@ a { color: inherit; text-decoration: none; }
   /* Left column: full width, centered */
   .apply-cta-left { width: 100% !important; text-align: center; }
   .apply-cta-eyebrow { justify-content: center; margin-bottom: 16px !important; }
-  .apply-cta-heading { font-size: clamp(40px, 5vw, 60px) !important; margin-bottom: 16px !important; }
+  .apply-cta-heading { font-size: clamp(48px, 12vw, 72px) !important; margin-bottom: 16px !important; }
   .apply-cta-desc { max-width: 100% !important; margin-left: auto; margin-right: auto; margin-bottom: 0 !important; }
   .apply-cta-img { display: none !important; }
 

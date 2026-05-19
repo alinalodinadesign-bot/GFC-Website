@@ -135,7 +135,7 @@ export default function ApplyCta({ project = null }) {
   const errFormat = t('errors.emailFormat');
 
   return (
-    <section id="apply-cta" style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
+    <section id="apply-cta" style={{ background: 'transparent', color: 'var(--paper)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
       <div style={{ padding: 'clamp(64px,8vw,96px) clamp(24px,4vw,64px)', maxWidth: 1280, margin: '0 auto' }}>
         <div className="apply-cta-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(48px,6vw,96px)', alignItems: submitted ? 'stretch' : 'flex-end', justifyContent: 'space-between' }}>
 
