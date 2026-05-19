@@ -22,7 +22,7 @@ export default function HomePage() {
       <ProjectsPreview />
       <Event />
       {/* Dark → White: short section formula, fires when half scrolled past viewport top */}
-      <ScrollColorSection colorFrom="#0a0a0a" colorTo="#ffffff" threshold={0.15} band={0.25} thresholdMobile={0.50} bandMobile={0.15}>
+      <ScrollColorSection colorFrom="#0a0a0a" colorTo="#ffffff" threshold={0.15} band={0.25} thresholdMobile={0.74} bandMobile={0.10}>
         <GalleryPreview />
       </ScrollColorSection>
 
