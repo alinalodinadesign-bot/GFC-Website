@@ -82,7 +82,14 @@ html, body { margin: 0; padding: 0; background: var(--paper); color: var(--fg-1)
 .home-main section, .home-main > div { margin: 0 !important; }
 .ticker-strip { border-top: none !important; border-bottom: none !important; }
 .partners-logos { border-top: none !important; }
-#apply-cta { border-top: none !important; }
+
+/* Home page scroll-color effect — override section backgrounds to transparent */
+.home-main #gallery   { background: transparent !important; }
+.home-main #apply-cta { background: transparent !important; }
+
+/* Internal pages — all H2 fixed at 60px (English) */
+.proj h2,
+.contact-page h2 { font-size: 60px !important; }
 body {
   font-family: var(--font-body);
   font-size: 15px;

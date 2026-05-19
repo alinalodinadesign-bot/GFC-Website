@@ -105,7 +105,7 @@ export default function ProjectDetailPage() {
             <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>{t('othersLabel')}</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, maxWidth: 960, margin: '0 auto' }}>
-            <h2 className="t-display-md" style={{ textAlign: 'center', color: 'var(--paper)', margin: 0, fontSize: 'clamp(40px, 5.5vw, 72px)', width: '100%' }}>
+            <h2 className="t-display-md" style={{ textAlign: 'center', color: 'var(--paper)', margin: 0, fontSize: 60, width: '100%' }}>
               {t('othersTitle')}{' '}
               <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('othersTitleEm')}</em>
             </h2>

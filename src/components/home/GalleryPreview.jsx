@@ -73,7 +73,7 @@ export default function GalleryPreview({ title = null }) {
   };
 
   return (
-    <section id="gallery" style={{ background: 'transparent', color: 'var(--paper)' }}>
+    <section id="gallery" style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
 
       {/* Header */}
       <div style={{ padding: '64px 24px 32px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
