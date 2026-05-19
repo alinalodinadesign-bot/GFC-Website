@@ -116,6 +116,9 @@ export default function GalleryPreview({ title = null }) {
             gap: 14,
             width: 'max-content',
             animation: `gallery-filmstrip ${duration}s linear infinite`,
+            animationPlayState: 'running',
+            willChange: 'transform',
+            transform: 'translate3d(0, 0, 0)',
           }}>
             {[...photos, ...photos].map((p, i) => (
               <img
