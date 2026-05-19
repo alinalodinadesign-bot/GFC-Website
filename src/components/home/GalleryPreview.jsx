@@ -113,7 +113,10 @@ export default function GalleryPreview({ title = null }) {
         <div key={tab} className="gallery-filmstrip-wrap" style={{ lineHeight: 0, paddingBottom: 80 }}>
           <div
             className="gallery-filmstrip-track"
-            style={{ '--filmstrip-dur': `${duration}s` }}
+            style={{
+              animationDuration: `${duration}s`,
+              WebkitAnimationDuration: `${duration}s`,
+            }}
           >
             {[...photos, ...photos].map((p, i) => (
               <img
