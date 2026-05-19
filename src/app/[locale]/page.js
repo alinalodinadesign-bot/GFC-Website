@@ -15,7 +15,7 @@ export default function HomePage() {
       <Ticker />
 
       {/* White → Dark: fires at the very end of scrolling through About */}
-      <ScrollColorSection colorFrom="#ffffff" colorTo="#0a0a0a" threshold={0.96} thresholdMobile={0.35} bandMobile={0.25}>
+      <ScrollColorSection colorFrom="#ffffff" colorTo="#0a0a0a" threshold={0.97} band={0.02} thresholdMobile={0.35} bandMobile={0.25}>
         <About />
       </ScrollColorSection>
 
