@@ -174,7 +174,7 @@ export default function ApplyCta({ project = null }) {
 
             {submitted ? (
               /* ── Success: full-bleed image with text overlay ── */
-              <div style={{ position: 'relative', width: 653, height: 756, overflow: 'hidden' }}>
+              <div className="apply-success-img-wrap" style={{ position: 'relative', width: 653, height: 756, overflow: 'hidden' }}>
                 <img
                   src="/images/apply/success.webp"
                   alt=""
