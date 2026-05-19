@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import Arrow from '@/components/Arrow';
 
@@ -17,6 +17,10 @@ export default function GalleryPreview({ title = null }) {
   const [tab, setTab] = useState('all');
   const [lb, setLb] = useState(null); /* { list, idx } */
 
+  const trackRef = useRef(null);
+  const rafRef  = useRef(null);
+  const xRef    = useRef(0);
+
   const TABS = ['all', 'event', 'runway', 'castings', 'backstage', 'awards'];
 
   const allPhotos = Object.entries(GALLERY_DATA).flatMap(([cat, imgs]) =>
@@ -25,6 +29,37 @@ export default function GalleryPreview({ title = null }) {
   const photos = tab === 'all'
     ? allPhotos
     : GALLERY_DATA[tab].map(src => ({ src: '/' + src, cat: tab }));
+
+  /* filmstrip speed: ~7 s per photo, min 40 s */
+  const duration = Math.max(photos.length * 7, 40);
+
+  /* ── rAF filmstrip — bypasses all Safari CSS animation bugs ── */
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    xRef.current = 0;
+    let lastTs = null;
+
+    const tick = (ts) => {
+      if (lastTs === null) lastTs = ts;
+      const dt = (ts - lastTs) / 1000; // seconds
+      lastTs = ts;
+
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth > 0) {
+        const speed = halfWidth / duration; // px/s
+        xRef.current -= speed * dt;
+        if (Math.abs(xRef.current) >= halfWidth) xRef.current = 0;
+        track.style.transform = `translateX(${xRef.current}px)`;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [tab, duration]);
 
   /* lightbox */
   const openLb = idx => setLb({ list: photos, idx });
@@ -42,9 +77,6 @@ export default function GalleryPreview({ title = null }) {
     window.addEventListener('keydown', fn);
     return () => window.removeEventListener('keydown', fn);
   }, [lb]);
-
-  /* filmstrip speed: ~7 s per photo, min 40 s */
-  const duration = Math.max(photos.length * 7, 40);
 
   /* tab pill */
   const tabStyle = active => ({
@@ -68,9 +100,7 @@ export default function GalleryPreview({ title = null }) {
     ...extra,
   });
 
-  const tabLabel = (tabKey) => {
-    return t(`tabs.${tabKey}`);
-  };
+  const tabLabel = (tabKey) => t(`tabs.${tabKey}`);
 
   return (
     <section id="gallery" style={{ background: 'transparent', color: 'var(--paper)' }}>
@@ -103,20 +133,17 @@ export default function GalleryPreview({ title = null }) {
         ))}
       </div>
 
-      {/* Filmstrip — key=tab restarts animation on tab switch */}
+      {/* Filmstrip */}
       {photos.length === 0 ? (
         <div style={{ padding: '80px 24px', textAlign: 'center', opacity: 0.25,
           fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
           {t('empty')}
         </div>
       ) : (
-        <div key={tab} className="gallery-filmstrip-wrap" style={{ lineHeight: 0, paddingBottom: 80 }}>
+        <div className="gallery-filmstrip-wrap" style={{ lineHeight: 0, paddingBottom: 80 }}>
           <div
+            ref={trackRef}
             className="gallery-filmstrip-track"
-            style={{
-              animationDuration: `${duration}s`,
-              WebkitAnimationDuration: `${duration}s`,
-            }}
           >
             {[...photos, ...photos].map((p, i) => (
               <img
