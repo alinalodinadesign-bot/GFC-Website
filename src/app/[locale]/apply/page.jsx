@@ -269,9 +269,11 @@ const FIELD_COMPONENTS = {
 };
 
 export default function ApplyPage() {
-  const [role, setRole] = useState('model');
+  const [role, setRole]           = useState('model');
   const [submitted, setSubmitted] = useState(false);
-  const [step, setStep] = useState(0);
+  const [step, setStep]           = useState(0);
+  const [privacyChecked, setPrivacyChecked] = useState(false);
+  const [privacyError, setPrivacyError]     = useState(false);
 
   const roles = GFC_DATA.roles;
   const FieldGroup = FIELD_COMPONENTS[role];
@@ -284,6 +286,10 @@ export default function ApplyPage() {
 
   const submit = (e) => {
     e.preventDefault();
+    if (!privacyChecked) {
+      setPrivacyError(true);
+      return;
+    }
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -351,11 +357,20 @@ export default function ApplyPage() {
             <FieldGroup />
 
             <label className="consent">
-              <input type="checkbox" defaultChecked />
+              <input
+                type="checkbox"
+                checked={privacyChecked}
+                onChange={e => { setPrivacyChecked(e.target.checked); if (e.target.checked) setPrivacyError(false); }}
+              />
               <span>
                 I have read and accept the <a className="link-line" style={{ fontSize: 12, letterSpacing: '0.08em' }}>Privacy Policy</a> and the <a className="link-line" style={{ fontSize: 12, letterSpacing: '0.08em' }}>Photo & Video Consent</a>.
               </span>
             </label>
+            {privacyError && (
+              <div style={{ marginTop: 4, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#FF3737', fontFamily: 'var(--font-body)' }}>
+                Please accept the Privacy Policy to continue
+              </div>
+            )}
             <label className="consent">
               <input type="checkbox" />
               <span>I am open to being contacted by partner agencies introduced by Global Fashion Code.</span>
