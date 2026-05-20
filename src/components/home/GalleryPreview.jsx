@@ -16,7 +16,7 @@ export default function GalleryPreview({ title = null }) {
   const t = useTranslations('gallery');
   const [tab, setTab]             = useState('all');
   const [lb, setLb]               = useState(null);
-  const [isSafari, setIsSafari]   = useState(false);
+  const [useDrag, setUseDrag]     = useState(false); // true on mobile OR Safari desktop
   const [progress, setProgress]   = useState(0);   // 0–1, for drag progress bar
 
   /* ── rAF refs (non-Safari auto-scroll) ── */
@@ -41,15 +41,17 @@ export default function GalleryPreview({ title = null }) {
   /* filmstrip speed: ~7 s per photo, min 40 s */
   const duration = Math.max(photos.length * 7, 40);
 
-  /* ── Detect Safari (client only) ── */
+  /* ── Detect mobile or Safari (client only) ── */
   useEffect(() => {
     const ua = navigator.userAgent;
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(ua));
+    const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+    const isMobile = window.innerWidth <= 960;
+    setUseDrag(isMobile || isSafari);
   }, []);
 
-  /* ── rAF auto-scroll (non-Safari only) ── */
+  /* ── rAF auto-scroll (desktop non-Safari only) ── */
   useEffect(() => {
-    if (isSafari) return;
+    if (useDrag) return;
     const track = trackRef.current;
     if (!track) return;
 
@@ -79,7 +81,7 @@ export default function GalleryPreview({ title = null }) {
     }, 150);
 
     return () => { clearTimeout(timer); if (rafId) cancelAnimationFrame(rafId); };
-  }, [tab, duration, isSafari]);
+  }, [tab, duration, useDrag]);
 
   /* ── Reset progress bar on tab switch (Safari) ── */
   useEffect(() => {
@@ -153,6 +155,12 @@ export default function GalleryPreview({ title = null }) {
     ...extra,
   });
 
+  const photoAlt = (p, i) => {
+    const cat = p.cat.charAt(0).toUpperCase() + p.cat.slice(1);
+    const num = String((i % photos.length) + 1).padStart(2, '0');
+    return `${cat} ${num} — GFC gallery`;
+  };
+
   const imgStyle = (i) => ({
     height: 'clamp(320px, 44vh, 540px)',
     width: 'auto',
@@ -202,9 +210,9 @@ export default function GalleryPreview({ title = null }) {
           fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
           {t('empty')}
         </div>
-      ) : isSafari ? (
+      ) : useDrag ? (
 
-        /* ── Safari: drag scroll ── */
+        /* ── Mobile / Safari: drag scroll ── */
         <div style={{ paddingBottom: 56 }}>
           <div
             ref={wrapRef}
@@ -221,7 +229,7 @@ export default function GalleryPreview({ title = null }) {
                 <img
                   key={i}
                   src={p.src}
-                  alt=""
+                  alt={photoAlt(p, i)}
                   draggable={false}
                   onClick={() => !isDragging.current && openLb(i)}
                   style={imgStyle(i)}
@@ -249,14 +257,14 @@ export default function GalleryPreview({ title = null }) {
 
       ) : (
 
-        /* ── Other browsers: rAF auto-scroll ── */
+        /* ── Desktop non-Safari: rAF auto-scroll ── */
         <div className="gallery-filmstrip-wrap" style={{ lineHeight: 0, paddingBottom: 80 }}>
           <div ref={trackRef} className="gallery-filmstrip-track">
             {[...photos, ...photos].map((p, i) => (
               <img
                 key={i}
                 src={p.src}
-                alt=""
+                alt={photoAlt(p, i)}
                 onClick={() => openLb(i % photos.length)}
                 style={imgStyle(i)}
                 onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
@@ -286,7 +294,7 @@ export default function GalleryPreview({ title = null }) {
             {lb.idx + 1} / {lb.list.length}
           </div>
 
-          <img src={lb.list[lb.idx].src} alt="" onClick={e => e.stopPropagation()}
+          <img src={lb.list[lb.idx].src} alt={photoAlt(lb.list[lb.idx], lb.idx)} onClick={e => e.stopPropagation()}
             style={{ maxWidth: '88vw', maxHeight: '88vh', objectFit: 'contain',
               boxShadow: '0 40px 100px rgba(0,0,0,0.9)' }} />
 
