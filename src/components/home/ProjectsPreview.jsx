@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { GFC_DATA } from '@/lib/data';
@@ -50,10 +51,16 @@ export default function ProjectsPreview() {
             style={{ height: 'clamp(360px, 45vw, 560px)', textDecoration: 'none' }}
           >
             {/* Background image — grayscale by default, colour on hover */}
-            <div
-              className="project-card-bg"
-              style={{ backgroundImage: `url('${cardPhotos[i]}')` }}
-            />
+            <div className="project-card-bg">
+              <Image
+                src={cardPhotos[i]}
+                alt={p.name}
+                fill
+                sizes="(max-width: 960px) 100vw, 20vw"
+                style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                priority={i === 0}
+              />
+            </div>
             {/* Gradient overlay */}
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.78) 100%)' }} />
 

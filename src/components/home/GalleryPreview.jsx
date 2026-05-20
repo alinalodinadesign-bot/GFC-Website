@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import Arrow from '@/components/Arrow';
 
@@ -165,7 +166,6 @@ export default function GalleryPreview({ title = null }) {
     height: 'clamp(320px, 44vh, 540px)',
     width: 'auto',
     objectFit: 'cover',
-    display: 'block',
     flexShrink: 0,
     cursor: 'pointer',
     marginTop: (i % 2 === 1) ? 30 : 0,
@@ -226,10 +226,13 @@ export default function GalleryPreview({ title = null }) {
           >
             <div className="gallery-filmstrip-track">
               {photos.map((p, i) => (
-                <img
+                <Image
                   key={i}
                   src={p.src}
                   alt={photoAlt(p, i)}
+                  width={0}
+                  height={0}
+                  sizes="(max-width: 960px) 80vw, 40vw"
                   draggable={false}
                   onClick={() => !isDragging.current && openLb(i)}
                   style={imgStyle(i)}
@@ -261,10 +264,13 @@ export default function GalleryPreview({ title = null }) {
         <div className="gallery-filmstrip-wrap" style={{ lineHeight: 0, paddingBottom: 80 }}>
           <div ref={trackRef} className="gallery-filmstrip-track">
             {[...photos, ...photos].map((p, i) => (
-              <img
+              <Image
                 key={i}
                 src={p.src}
                 alt={photoAlt(p, i)}
+                width={0}
+                height={0}
+                sizes="(max-width: 960px) 80vw, 40vw"
                 onClick={() => openLb(i % photos.length)}
                 style={imgStyle(i)}
                 onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
@@ -294,9 +300,16 @@ export default function GalleryPreview({ title = null }) {
             {lb.idx + 1} / {lb.list.length}
           </div>
 
-          <img src={lb.list[lb.idx].src} alt={photoAlt(lb.list[lb.idx], lb.idx)} onClick={e => e.stopPropagation()}
-            style={{ maxWidth: '88vw', maxHeight: '88vh', objectFit: 'contain',
-              boxShadow: '0 40px 100px rgba(0,0,0,0.9)' }} />
+          <Image
+            src={lb.list[lb.idx].src}
+            alt={photoAlt(lb.list[lb.idx], lb.idx)}
+            width={0}
+            height={0}
+            sizes="88vw"
+            onClick={e => e.stopPropagation()}
+            style={{ maxWidth: '88vw', maxHeight: '88vh', width: 'auto', height: 'auto',
+              objectFit: 'contain', boxShadow: '0 40px 100px rgba(0,0,0,0.9)' }}
+          />
 
           {lb.list.length > 1 && (
             <button onClick={e => { e.stopPropagation(); prev(); }}
