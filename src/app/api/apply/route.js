@@ -35,12 +35,13 @@ function getIP(req) {
 }
 
 // Escape HTML to prevent injection in email body
-function esc(str) {
+function escapeHtml(str) {
   return String(str ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/&/g,  '&amp;')
+    .replace(/</g,  '&lt;')
+    .replace(/>/g,  '&gt;')
+    .replace(/"/g,  '&quot;')
+    .replace(/'/g,  '&#39;');
 }
 
 // ── Field rules ──────────────────────────────────────────────────────────────
@@ -118,17 +119,17 @@ export async function POST(req) {
     await resend.emails.send({
       from: 'GFC Applications <onboarding@resend.dev>',
       to:   process.env.APPLY_EMAIL || 'alina.lodina.design@gmail.com',
-      subject: `New Application — ${esc(role)} — ${esc(name)}${project ? ` — ${esc(project)}` : ''}`,
+      subject: `New Application — ${escapeHtml(role)} — ${escapeHtml(name)}${project ? ` — ${escapeHtml(project)}` : ''}`,
       html: `
         <h2>New GFC Application</h2>
         <table style="border-collapse:collapse;width:100%">
-          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600;width:160px">Source</td><td style="padding:8px;border:1px solid #eee">${esc(project) || 'Quick Apply (Homepage)'}</td></tr>
-          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Role</td><td style="padding:8px;border:1px solid #eee">${esc(role) || '—'}</td></tr>
-          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Name</td><td style="padding:8px;border:1px solid #eee">${esc(name) || '—'}</td></tr>
-          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Email</td><td style="padding:8px;border:1px solid #eee">${esc(email) || '—'}</td></tr>
-          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Country</td><td style="padding:8px;border:1px solid #eee">${esc(country) || '—'}</td></tr>
-          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Instagram / Portfolio</td><td style="padding:8px;border:1px solid #eee">${esc(instagram) || '—'}</td></tr>
-          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">About</td><td style="padding:8px;border:1px solid #eee;white-space:pre-wrap">${esc(about) || '—'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600;width:160px">Source</td><td style="padding:8px;border:1px solid #eee">${escapeHtml(project) || 'Quick Apply (Homepage)'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Role</td><td style="padding:8px;border:1px solid #eee">${escapeHtml(role) || '—'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Name</td><td style="padding:8px;border:1px solid #eee">${escapeHtml(name) || '—'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Email</td><td style="padding:8px;border:1px solid #eee">${escapeHtml(email) || '—'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Country</td><td style="padding:8px;border:1px solid #eee">${escapeHtml(country) || '—'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">Instagram / Portfolio</td><td style="padding:8px;border:1px solid #eee">${escapeHtml(instagram) || '—'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #eee;font-weight:600">About</td><td style="padding:8px;border:1px solid #eee;white-space:pre-wrap">${escapeHtml(about) || '—'}</td></tr>
         </table>
         <p style="color:#888;font-size:12px;margin-top:24px">GFC / 026 · Submitted via globalfashioncode.com</p>
       `,
