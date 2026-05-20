@@ -170,11 +170,11 @@ export default function ApplyCta({ project = null }) {
           </div>
 
           {/* Right — role selector + form / success image */}
-          <div className="apply-cta-right" style={{ flex: '0 0 auto', width: submitted ? 653 : 'clamp(320px, 48%, 620px)' }}>
+          <div className="apply-cta-right" style={{ flex: '0 0 auto', width: submitted ? '100%' : 'clamp(320px, 48%, 620px)' }}>
 
             {submitted ? (
               /* ── Success: full-bleed image with text overlay ── */
-              <div className="apply-success-img-wrap" style={{ position: 'relative', width: 653, height: 756, overflow: 'hidden' }}>
+              <div className="apply-success-img-wrap">
                 <img
                   src="/images/apply/success.webp"
                   alt=""
