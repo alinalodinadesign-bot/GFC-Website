@@ -290,16 +290,16 @@ export default function ApplyCta({ project = null }) {
                       onChange={v => { setConsent(p => ({ ...p, main: v })); setConsentError(false); }}
                       error={consentError}
                     >
-                      By submitting this application, I confirm that the information provided is accurate and I agree to the processing of my personal data in accordance with the{' '}
-                      <Link href="/legal#privacy" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'underline' }}>Privacy Policy</Link>.
-                      I understand that my materials may be shared with agencies and partners, that participation may involve photography and media, and that a separate Media Release Agreement may be required.
+                      {t('consent.main')}{' '}
+                      <Link href="/legal#privacy" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'underline' }}>{t('consent.mainLink')}</Link>
+                      {t('consent.mainSuffix')}
                     </ConsentCheck>
 
                     <ConsentCheck
                       checked={consent.under18}
                       onChange={v => setConsent(p => ({ ...p, under18: v }))}
                     >
-                      If the applicant is under 18, I confirm I am the parent or legal guardian.
+                      {t('consent.under18')}
                     </ConsentCheck>
 
                     <ConsentCheck
@@ -307,7 +307,7 @@ export default function ApplyCta({ project = null }) {
                       onChange={v => setConsent(p => ({ ...p, marketing: v }))}
                       optional
                     >
-                      I agree to receive news and updates from Global Fashion Code. I can unsubscribe at any time.
+                      {t('consent.marketing')}
                     </ConsentCheck>
                   </div>
 
