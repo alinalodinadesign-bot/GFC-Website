@@ -2428,6 +2428,6 @@ html[lang="ru"] h2 {
 
 /* Cookie banner — mobile */
 @media (max-width: 600px) {
-  .cookie-btns { flex-direction: column !important; }
-  .cookie-btns button { width: 100%; text-align: center; justify-content: center; }
+  .cookie-btns { flex-direction: column !important; width: 100%; }
+  .cookie-btns button { width: 100% !important; text-align: center; justify-content: center; }
 }
