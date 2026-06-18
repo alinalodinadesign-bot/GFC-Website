@@ -1800,6 +1800,27 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.1;
   color: var(--ink);
 }
+.proj-overview-materials-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 40px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.proj-overview-materials-btn:hover {
+  background: transparent;
+  color: var(--ink);
+}
 .proj-overview-audience {
   font-size: 11px;
   letter-spacing: 0.16em;

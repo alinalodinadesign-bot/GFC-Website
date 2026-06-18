@@ -61,6 +61,17 @@ export default function ProjectDetailPage() {
               ))}
             </div>
 
+            {p.materialsUrl && (
+              <a
+                href={p.materialsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="proj-overview-materials-btn"
+              >
+                View Materials
+              </a>
+            )}
+
             {p.categories?.length > 0 && (
               <p className="proj-overview-categories">
                 {p.categories.map(c => `( ${c} )`).join(' · ')}
