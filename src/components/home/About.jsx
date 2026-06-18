@@ -30,8 +30,8 @@ export default async function About() {
               textAlign: 'center',
               margin: 0,
             }}>
-              {t('titleLine1')}<br />{t('titleLine2')}{' '}
-              <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em>
+              {t('titleLine1')}<br />{t('titleLine2')}
+              {t('titleEm') && <> <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em></>}
             </h2>
           </div>
 
@@ -44,6 +44,19 @@ export default async function About() {
 
           <p style={{ color: 'var(--fg-2)', fontSize: 15, lineHeight: 1.65, textAlign: 'center', maxWidth: 407, margin: 0 }}>
             {t('description')}
+          </p>
+
+          <p style={{
+            color: 'var(--ink)',
+            fontSize: 11,
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            maxWidth: 720,
+            margin: '14px 0 0',
+            lineHeight: 1.8,
+          }}>
+            {t('audience')}
           </p>
         </div>
 

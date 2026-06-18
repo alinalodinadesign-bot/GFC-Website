@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="hero-overlay" />
       <div className="hero-grain" />
 
-      <div style={{
+      <div className="hero-content" style={{
         position: 'absolute', inset: 0,
         display: 'flex', flexDirection: 'column',
         padding: '100px 24px 48px',
@@ -75,6 +75,14 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="hero-anim-cta" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <span className="hero-cta-meta-left" style={{
+            position: 'absolute', left: 0,
+            display: 'none',
+            fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7,
+            whiteSpace: 'nowrap',
+          }}>
+            {t('eyebrowLeft')}
+          </span>
           <button
             className="btn btn-ghost-on-ink btn-lg"
             style={{ borderColor: 'rgba(255,255,255,0.5)', gap: 20 }}

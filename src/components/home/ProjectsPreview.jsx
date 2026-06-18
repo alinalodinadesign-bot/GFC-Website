@@ -26,12 +26,15 @@ export default function ProjectsPreview() {
           <span className="t-meta" style={{ color: 'var(--on-ink-2)' }}>{t('label')}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, maxWidth: 960, margin: '0 auto' }}>
-          <h2 className="t-display-md" style={{ textAlign: 'center', color: 'var(--paper)', margin: 0, fontSize: 'clamp(40px, 5vw, 60px)', width: '100%' }}>
-            {t('titleLine1')}<br />
-            <em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em>
+          <h2 className="t-display-md" style={{ textAlign: 'center', color: 'var(--paper)', margin: 0, fontSize: 'clamp(40px, 5vw, 60px)', width: '100%', whiteSpace: 'pre-line' }}>
+            {t('titleLine1')}
+            {t('titleEm') && <><br /><em style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal', fontWeight: 700, letterSpacing: 'var(--display-tracking)' }}>{t('titleEm')}</em></>}
           </h2>
-          <p style={{ color: 'var(--on-ink-2)', textAlign: 'center', fontSize: 14, lineHeight: 1.6, maxWidth: 480, margin: 0 }}>
+          <p style={{ color: 'var(--on-ink-2)', textAlign: 'center', fontSize: 14, lineHeight: 1.6, maxWidth: 520, margin: 0 }}>
             {t('subtitle')}
+          </p>
+          <p style={{ color: 'var(--paper)', textAlign: 'center', fontSize: 14, lineHeight: 1.6, maxWidth: 520, margin: 0, fontWeight: 700 }}>
+            {t('subtitleBold')}
           </p>
         </div>
       </div>
@@ -77,7 +80,7 @@ export default function ProjectsPreview() {
             <div style={{
               position: 'absolute', bottom: 0, left: 0, right: 0,
               padding: '0 20px 28px',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
               textAlign: 'center',
             }}>
               <h3 style={{
@@ -87,10 +90,10 @@ export default function ProjectsPreview() {
               }}>
                 {p.name}
               </h3>
-              <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                {p.forWho}
+              <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 11, letterSpacing: '0.04em', lineHeight: 1.15 }}>
+                {p.subtitle}
               </span>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 18 }}>
                 <span style={{ color: 'var(--paper)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', borderBottom: '1px solid rgba(255,255,255,0.5)', paddingBottom: 2 }}>
                   {t('discoverMore')}
                 </span>

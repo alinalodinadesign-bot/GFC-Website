@@ -16,11 +16,11 @@
     "copyright": "© GFC 2026"
   },
   "hero": {
-    "eyebrowLeft": "( Global Fashion Code )",
-    "eyebrowRight": "( Casting ) · ( Runway ) · ( Award )",
-    "line1": "The place where",
-    "line2": "fashion talent",
-    "line3": "gets discovered",
+    "eyebrowLeft": "( GET SEEN. GET CONNECTED. GO GLOBAL. )",
+    "eyebrowRight": "( Runway ) · ( Casting ) · ( Education ) · ( Award )",
+    "line1": "YOUR GLOBAL",
+    "line2": "ACCESS TO THE",
+    "line3": "FASHION INDUSTRY",
     "scriptLine": "Fashion Call",
     "applyNow": "Apply Now",
     "scrollDown": "Scroll down"
@@ -29,17 +29,19 @@
     "index": "( 01 )",
     "label": "About",
     "tag": "( GFC )",
-    "titleLine1": "Connecting talent",
-    "titleLine2": "with",
-    "titleEm": "opportunity",
-    "description": "Global Fashion Code is an exclusive three-day event that brings together the world's leading modeling agencies, emerging models, top designers, renowned photographers, talented makeup artists, and other key fashion industry players."
+    "titleLine1": "GLOBAL FASHION",
+    "titleLine2": "CODE (GFC)",
+    "titleEm": "",
+    "description": "An international fashion showcase connecting models, designers, photographers, beauty creatives and model agencies with the industry leaders through runway, education, castings and professional networking.",
+    "audience": "( For Models ) · ( Model Agencies ) · ( Designers ) · ( Photographers ) · ( Makeup Artists ) · ( Hair Stylists ) · ( Brands ) · ( Fashion Leaders )"
   },
   "projects": {
     "index": "( 02 )",
     "label": "Our projects",
-    "titleLine1": "Platforms that create",
-    "titleEm": "opportunities",
-    "subtitle": "Each project works as a separate fashion universe with its own visual language, audience and industry purpose.",
+    "titleLine1": "YOUR LIVE ACCESS\nTO THE FASHION INDUSTRY",
+    "titleEm": "",
+    "subtitle": "We create live fashion events where talents, brands and industry professionals meet in person, connect, collaborate and create new opportunities together.",
+    "subtitleBold": "Global Fashion Code is where visibility becomes connection, and connection becomes opportunity.",
     "discoverMore": "Discover more"
   },
   "gallery": {
@@ -70,7 +72,7 @@
     "titleLine2": "the Cast",
     "description": "Submit your portfolio for consideration at the upcoming Global Fashion Code event. We review applications from all creative disciplines to shape the future of high fashion industries.",
     "iAm": "( I am a )",
-    "roles": ["Model", "Agency", "Designer", "Photographer", "Makeup Artist", "Stylist", "Sponsor / Partner", "Media"],
+    "roles": ["Model", "Model Agency", "Designer", "Photographer", "Makeup Artist", "Stylist", "Hair Stylist", "Fashion Influencer", "Sponsor / Partner", "Media"],
     "fields": {
       "name": "( Full Name )",
       "email": "( Email Address )",
