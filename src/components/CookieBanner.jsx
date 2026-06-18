@@ -41,7 +41,7 @@ export default function CookieBanner() {
               Cookie Policy
             </Link>
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, flexShrink: 0 }}>
+          <div className="cookie-btns" style={{ display: 'flex', flexWrap: 'wrap', gap: 10, flexShrink: 0 }}>
             <Btn onClick={() => setShowSettings(true)} ghost>Manage Settings</Btn>
             <Btn onClick={rejectNonEssential} ghost>Reject Non-Essential</Btn>
             <Btn onClick={acceptAll}>Accept All</Btn>

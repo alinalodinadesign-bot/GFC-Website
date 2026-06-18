@@ -166,7 +166,7 @@ export default function ApplyCta({ project = null }) {
   return (
     <section id="apply-cta" style={{ background: 'transparent', color: 'var(--paper)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
       <div style={{ padding: 'clamp(64px,8vw,96px) clamp(24px,4vw,64px)', maxWidth: 1280, margin: '0 auto' }}>
-        <div className="apply-cta-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(48px,6vw,96px)', alignItems: submitted ? 'stretch' : 'flex-end', justifyContent: 'space-between' }}>
+        <div className="apply-cta-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(48px,6vw,96px)', alignItems: submitted ? 'stretch' : 'flex-start', justifyContent: 'space-between' }}>
 
           {/* Left — heading + description + image */}
           <div className="apply-cta-left" style={{ flexShrink: 0, width: 'clamp(240px,28vw,320px)' }}>

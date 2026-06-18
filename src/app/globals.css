@@ -2425,3 +2425,9 @@ html[lang="ru"] h2 {
   .legal-sidebar { display: none; }
   .legal-layout { flex-direction: column; }
 }
+
+/* Cookie banner — mobile */
+@media (max-width: 600px) {
+  .cookie-btns { flex-direction: column !important; }
+  .cookie-btns button { width: 100%; text-align: center; justify-content: center; }
+}
