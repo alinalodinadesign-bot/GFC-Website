@@ -14,6 +14,7 @@ export default function Nav({ mode = 'auto' }) {
   const [atTop, setAtTop] = useState(true);
   const [showProjects, setShowProjects] = useState(false);
   const projectsRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setAtTop(window.scrollY < 10);
@@ -65,7 +66,7 @@ export default function Nav({ mode = 'auto' }) {
   };
 
   return (
-    <header className={navClass}>
+    <header className={navClass} ref={headerRef}>
       <div className="nav-left">
         <Link href="/" aria-label="Global Fashion Code — Home" style={{ display: 'block', lineHeight: 0 }} onClick={() => { if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           <Logo />
@@ -94,7 +95,7 @@ export default function Nav({ mode = 'auto' }) {
         </div>
         <a href="#about" onClick={goAnchor('about')} className="nav-link">{t('about')}</a>
         <a href="#event" onClick={goAnchor('event')} className="nav-link">{t('event')}</a>
-        <a href="#gallery" onClick={goAnchor('gallery')} className="nav-link">{t('gallery')}</a>
+        <Link href="/gallery" className={`nav-link${pathname === '/gallery' ? ' is-active' : ''}`}>{t('gallery')}</Link>
         <a href="#partners" onClick={goAnchor('partners')} className="nav-link">{t('partners')}</a>
         <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link">{t('apply')}</a>
         <Link href="/contact" className={`nav-link ${isContact ? 'is-active' : ''}`}>{t('contact')}</Link>

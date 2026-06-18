@@ -65,7 +65,7 @@ export default function MobileMenu() {
         ))}
         <div className="item" onClick={goAnchor('about')}>{tNav('about')}</div>
         <div className="item" onClick={goAnchor('event')}>{tNav('event')}</div>
-        <div className="item" onClick={goAnchor('gallery')}>{tNav('gallery')}</div>
+        <div className="item" onClick={go('/gallery')}>{tNav('gallery')}</div>
         <div className="item" onClick={goAnchor('partners')}>{tNav('partners')}</div>
         <div className="item" onClick={goAnchor('apply-cta')}>{tNav('apply')}</div>
         <div className="item" onClick={go('/contact')}>{tNav('contact')}</div>

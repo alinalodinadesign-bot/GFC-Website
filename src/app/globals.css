@@ -356,6 +356,7 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
   transition: opacity var(--t-base) var(--ease-out);
 }
 .nav-link:hover { opacity: 0.55; }
@@ -2430,4 +2431,12 @@ html[lang="ru"] h2 {
 @media (max-width: 600px) {
   .cookie-btns { flex-direction: column !important; width: 100%; }
   .cookie-btns button { width: 100% !important; text-align: center; justify-content: center; }
+}
+
+/* Russian nav — longer words need wider breakpoint for burger */
+@media (max-width: 1200px) {
+  html[lang="ru"] .nav-links { display: none !important; }
+  html[lang="ru"] .nav-right > *:not(.nav-mobile-toggle):not(.nav-lang) { display: none !important; }
+  html[lang="ru"] .nav-mobile-toggle { display: inline-flex !important; }
+  html[lang="ru"] .nav-lang { display: inline-flex !important; }
 }

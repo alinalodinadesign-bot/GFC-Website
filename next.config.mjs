@@ -7,6 +7,14 @@ const nextConfig = {
   turbopack: {
     root: '/Users/alina/gfc-next',
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);
