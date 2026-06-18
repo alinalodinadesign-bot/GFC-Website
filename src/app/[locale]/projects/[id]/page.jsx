@@ -52,43 +52,85 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      <section className="proj-meta">
-        <div className="cell">
-          <div className="label">/01 For</div>
-          <div className="val">{p.forWho}</div>
-        </div>
-        <div className="cell">
-          <div className="label">/02 Where</div>
-          <div className="val">{p.location}</div>
-        </div>
-        <div className="cell">
-          <div className="label">/03 When</div>
-          <div className="val">{p.year}</div>
-        </div>
-        <div className="cell">
-          <div className="label">/04 Index</div>
-          <div className="val">/{p.number} of 05</div>
-        </div>
-      </section>
+      {p.description ? (
+        <section className="proj-overview">
+          <div className="proj-overview-inner">
+            <div className="proj-overview-desc-group">
+              {(Array.isArray(p.description) ? p.description : [p.description]).map((para, i) => (
+                <p key={i} className="proj-overview-desc">{para}</p>
+              ))}
+            </div>
 
-      <section className="proj-section">
-        <div className="proj-receive-grid">
-          <h3 className="lead">
-            {t('receiveTitle')} <span className="t-serif" style={{ fontSize: 'inherit' }}>{t('receiveEm')}</span>.
-          </h3>
-          <ul className="proj-receive-list">
-            {p.receive.map(r => (
-              <li key={r.n}>
-                <span className="n">/{r.n}</span>
-                <div>
-                  <h4>{r.t}</h4>
-                  <p>{r.d}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+            {p.categories?.length > 0 && (
+              <p className="proj-overview-categories">
+                {p.categories.map(c => `( ${c} )`).join(' · ')}
+              </p>
+            )}
+
+            {p.selectionNote && (
+              <p className="proj-overview-note">{p.selectionNote}</p>
+            )}
+
+            {p.days?.length > 0 && (
+              <div className="proj-overview-days">
+                {p.days.map(d => (
+                  <div key={d.n} className="proj-overview-day">
+                    <span className="proj-overview-day-n">{d.n}</span>
+                    <span className="proj-overview-day-sep">·</span>
+                    <span className="proj-overview-day-t">{d.t}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {p.audience && (
+              <p className="proj-overview-audience">
+                {p.audience.split('·').map(s => `( ${s.trim()} )`).join(' · ')}
+              </p>
+            )}
+          </div>
+        </section>
+      ) : (
+        <>
+          <section className="proj-meta">
+            <div className="cell">
+              <div className="label">/01 For</div>
+              <div className="val">{p.forWho}</div>
+            </div>
+            <div className="cell">
+              <div className="label">/02 Where</div>
+              <div className="val">{p.location}</div>
+            </div>
+            <div className="cell">
+              <div className="label">/03 When</div>
+              <div className="val">{p.year}</div>
+            </div>
+            <div className="cell">
+              <div className="label">/04 Index</div>
+              <div className="val">/{p.number} of 05</div>
+            </div>
+          </section>
+
+          <section className="proj-section">
+            <div className="proj-receive-grid">
+              <h3 className="lead">
+                {t('receiveTitle')} <span className="t-serif" style={{ fontSize: 'inherit' }}>{t('receiveEm')}</span>.
+              </h3>
+              <ul className="proj-receive-list">
+                {p.receive.map(r => (
+                  <li key={r.n}>
+                    <span className="n">/{r.n}</span>
+                    <div>
+                      <h4>{r.t}</h4>
+                      <p>{r.d}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Gallery — full component with filmstrip + lightbox */}
       <GalleryPreview title={t('fromTheFloor')} />

@@ -35,9 +35,15 @@ export default function GalleryPreview({ title = null }) {
   const allPhotos = Object.entries(GALLERY_DATA).flatMap(([cat, imgs]) =>
     imgs.map(src => ({ src: '/' + src, cat }))
   );
-  const photos = tab === 'all'
+  const basePhotos = tab === 'all'
     ? allPhotos
     : GALLERY_DATA[tab].map(src => ({ src: '/' + src, cat: tab }));
+
+  /* On mobile/Safari drag mode, move first photo to the end so the strip
+     visually starts with a clipped second photo, signaling "more to swipe". */
+  const photos = (useDrag && basePhotos.length > 1)
+    ? [...basePhotos.slice(1), basePhotos[0]]
+    : basePhotos;
 
   /* filmstrip speed: ~7 s per photo, min 40 s */
   const duration = Math.max(photos.length * 7, 40);
@@ -116,6 +122,13 @@ export default function GalleryPreview({ title = null }) {
     if (!wrap) return;
     const max = wrap.scrollWidth - wrap.clientWidth;
     setProgress(max > 0 ? wrap.scrollLeft / max : 0);
+  };
+
+  const scrollByStep = (dir) => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const step = Math.max(wrap.clientWidth * 0.7, 200);
+    wrap.scrollBy({ left: dir * step, behavior: 'smooth' });
   };
 
   /* ── Lightbox ── */
@@ -243,18 +256,37 @@ export default function GalleryPreview({ title = null }) {
             </div>
           </div>
 
-          {/* Progress bar */}
-          <div style={{ padding: '20px 24px 0', position: 'relative' }}>
-            {/* Track */}
-            <div style={{ height: 2, background: 'rgba(255,255,255,0.3)', borderRadius: 1 }} />
-            {/* Thumb */}
-            <div style={{
-              position: 'absolute', top: 20, left: 24, height: 2, borderRadius: 1,
-              background: 'rgba(255,255,255,1)',
-              width: `calc(${progress * 100}% - 48px)`,
-              maxWidth: 'calc(100% - 48px)',
-              transition: 'width 0.05s linear',
-            }} />
+          {/* Progress bar with swipe arrows */}
+          <div style={{ padding: '20px 24px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button
+              type="button"
+              aria-label="Previous"
+              onClick={() => scrollByStep(-1)}
+              style={{
+                background: 'none', border: 'none', padding: '4px 8px', cursor: 'pointer',
+                fontSize: 32, lineHeight: 1, color: 'rgba(255,255,255,0.8)',
+                userSelect: 'none',
+              }}
+            >‹</button>
+            <div style={{ position: 'relative', flex: 1 }}>
+              <div style={{ height: 2, background: 'rgba(255,255,255,0.3)', borderRadius: 1 }} />
+              <div style={{
+                position: 'absolute', top: 0, left: 0, height: 2, borderRadius: 1,
+                background: 'rgba(255,255,255,1)',
+                width: `${progress * 100}%`,
+                transition: 'width 0.05s linear',
+              }} />
+            </div>
+            <button
+              type="button"
+              aria-label="Next"
+              onClick={() => scrollByStep(1)}
+              style={{
+                background: 'none', border: 'none', padding: '4px 8px', cursor: 'pointer',
+                fontSize: 32, lineHeight: 1, color: 'rgba(255,255,255,0.8)',
+                userSelect: 'none',
+              }}
+            >›</button>
           </div>
         </div>
 
