@@ -117,7 +117,7 @@ export async function POST(req) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: 'GFC Applications <noreply@globalfashioncode.com>',
+      from: 'GFC Applications <applications@globalfashioncode.com>',
       to:   process.env.APPLY_EMAIL || 'alina.lodina.design@gmail.com',
       subject: `New Application — ${escapeHtml(role)} — ${escapeHtml(name)}${project ? ` — ${escapeHtml(project)}` : ''}`,
       html: `
