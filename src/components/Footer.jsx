@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 const meta = { fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' };
 const legal = { fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', cursor: 'pointer', textDecoration: 'none', transition: 'color 0.2s' };
@@ -61,17 +62,10 @@ export default function Footer() {
         gap: 16,
       }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px 24px' }}>
-          {links.map(label => (
-            <a
-              key={label}
-              href="#"
-              style={legal}
-              onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}
-            >
-              {label}
-            </a>
-          ))}
+          <Link href="/legal#privacy" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Privacy Policy</Link>
+          <Link href="/legal#cookies" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Cookie Policy</Link>
+          <Link href="/legal#terms" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Terms & Conditions</Link>
+          <Link href="/legal#imprint" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Legal Notice</Link>
         </div>
         <span style={{ ...meta, opacity: 0.35 }}>{t('copyright')}</span>
       </div>

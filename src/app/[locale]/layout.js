@@ -7,6 +7,7 @@ import '../globals.css';
 import Nav from '@/components/Nav';
 import MobileMenu from '@/components/MobileMenu';
 import Footer from '@/components/Footer';
+import CookieBanner from '@/components/CookieBanner';
 
 const hanken = localFont({
   src: [
@@ -63,6 +64,7 @@ export default async function LocaleLayout({ children, params }) {
           <MobileMenu />
           {children}
           <Footer />
+          <CookieBanner />
         </NextIntlClientProvider>
       </body>
     </html>

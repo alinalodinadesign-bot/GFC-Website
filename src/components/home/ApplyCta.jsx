@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import Arrow from '@/components/Arrow';
 
 const inputStyle = {
@@ -59,6 +60,31 @@ function DarkField({ label, type = 'text', value, onChange, error, errRequired, 
   );
 }
 
+function ConsentCheck({ checked, onChange, error, optional, children }) {
+  return (
+    <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer' }}>
+      <span
+        onClick={() => onChange(!checked)}
+        style={{
+          flexShrink: 0, marginTop: 2,
+          width: 16, height: 16, borderRadius: 2,
+          border: `1px solid ${error ? '#FF3737' : checked ? 'var(--paper)' : 'rgba(255,255,255,0.3)'}`,
+          background: checked ? 'var(--paper)' : 'transparent',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          transition: 'all 0.15s',
+        }}
+      >
+        {checked && <span style={{ color: 'var(--ink)', fontSize: 10, lineHeight: 1, fontWeight: 700 }}>✓</span>}
+      </span>
+      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', lineHeight: 1.65 }}>
+        {optional && <span style={{ color: 'rgba(255,255,255,0.35)', marginRight: 6, letterSpacing: '0.1em', textTransform: 'uppercase' }}>(Optional)</span>}
+        {children}
+        {error && <span style={{ display: 'block', marginTop: 4, color: '#FF3737', fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Required</span>}
+      </span>
+    </label>
+  );
+}
+
 function DarkTextarea({ label, value, onChange, error, errRequired }) {
   const [focused, setFocused] = useState(false);
   const floated = focused || value.length > 0;
@@ -90,6 +116,8 @@ export default function ApplyCta({ project = null }) {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState('');
+  const [consent, setConsent] = useState({ main: false, under18: false, marketing: false });
+  const [consentError, setConsentError] = useState(false);
 
   const toggleRole = (role) => setSelectedRoles([role]);
 
@@ -107,7 +135,8 @@ export default function ApplyCta({ project = null }) {
     if (!form.instagram.trim()) e.instagram = true;
     if (!form.about.trim())     e.about     = true;
     setErrors(e);
-    return Object.keys(e).length === 0;
+    if (!consent.main) setConsentError(true);
+    return Object.keys(e).length === 0 && consent.main;
   };
 
   const handleSubmit = async (e) => {
@@ -254,13 +283,41 @@ export default function ApplyCta({ project = null }) {
                   <DarkField    label={t('fields.instagram')} type="text"  value={form.instagram} onChange={set('instagram')} error={errors.instagram} errRequired={errRequired} errFormat={errFormat} />
                   <DarkTextarea label={t('fields.about')}                  value={form.about}     onChange={set('about')}     error={errors.about}     errRequired={errRequired} />
 
+                  {/* Consent checkboxes */}
+                  <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 14 }}>
+                    <ConsentCheck
+                      checked={consent.main}
+                      onChange={v => { setConsent(p => ({ ...p, main: v })); setConsentError(false); }}
+                      error={consentError}
+                    >
+                      By submitting this application, I confirm that the information provided is accurate and I agree to the processing of my personal data in accordance with the{' '}
+                      <Link href="/legal#privacy" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'underline' }}>Privacy Policy</Link>.
+                      I understand that my materials may be shared with agencies and partners, that participation may involve photography and media, and that a separate Media Release Agreement may be required.
+                    </ConsentCheck>
+
+                    <ConsentCheck
+                      checked={consent.under18}
+                      onChange={v => setConsent(p => ({ ...p, under18: v }))}
+                    >
+                      If the applicant is under 18, I confirm I am the parent or legal guardian.
+                    </ConsentCheck>
+
+                    <ConsentCheck
+                      checked={consent.marketing}
+                      onChange={v => setConsent(p => ({ ...p, marketing: v }))}
+                      optional
+                    >
+                      I agree to receive news and updates from Global Fashion Code. I can unsubscribe at any time.
+                    </ConsentCheck>
+                  </div>
+
                   {sendError && (
                     <div style={{ marginTop: 12, fontSize: 11, color: '#FF3737', letterSpacing: '0.1em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
                       {sendError}
                     </div>
                   )}
 
-                  <div style={{ marginTop: 32 }}>
+                  <div style={{ marginTop: 24 }}>
                     <button
                       type="submit"
                       disabled={sending}
