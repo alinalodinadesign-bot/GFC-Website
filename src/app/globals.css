@@ -2450,3 +2450,37 @@ html[lang="ru"] h2 {
 @media (max-width: 960px) {
   .event-page .event { padding-top: 96px; }
 }
+
+/* ==========================================================
+   PARTNERS PAGE — white header; logos 4 + 3 across two rows
+   ========================================================== */
+.partners-logos-rows {
+  border-top: 1px solid var(--ink);
+  padding-top: 56px;
+  padding-bottom: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.partners-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 32px 64px;
+}
+@media (max-width: 960px) {
+  /* .partners already has 80px top padding on mobile — clears the nav */
+  .partners-logos-rows { gap: 40px; }
+  .partners-logo-row { gap: 24px 40px; }
+}
+
+/* ==========================================================
+   APPLY PAGE — dark, form copied from homepage
+   ========================================================== */
+.apply-cta-page { background: var(--ink); padding-top: 40px; }
+@media (max-width: 960px) {
+  .apply-cta-page { padding-top: 24px; }
+}

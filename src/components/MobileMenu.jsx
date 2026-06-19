@@ -22,19 +22,7 @@ export default function MobileMenu() {
   // Close on route change
   useEffect(() => { setOpen(false); }, [pathname]);
 
-  const isHome = pathname === '/';
-
   const go = (path) => () => { setOpen(false); router.push(path); };
-
-  const goAnchor = (sectionId) => () => {
-    setOpen(false);
-    const scrollTo = () => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
-    if (isHome) { setTimeout(scrollTo, 300); }
-    else { router.push('/'); setTimeout(scrollTo, 380); }
-  };
 
   const switchLocale = (newLocale) => {
     router.replace(pathname, { locale: newLocale });
@@ -66,8 +54,8 @@ export default function MobileMenu() {
         ))}
         <div className="item" onClick={go('/event')}>{tNav('event')}</div>
         <div className="item" onClick={go('/gallery')}>{tNav('gallery')}</div>
-        <div className="item" onClick={goAnchor('partners')}>{tNav('partners')}</div>
-        <div className="item" onClick={goAnchor('apply-cta')}>{tNav('apply')}</div>
+        <div className="item" onClick={go('/partners')}>{tNav('partners')}</div>
+        <div className="item" onClick={go('/apply')}>{tNav('apply')}</div>
         <div className="item" onClick={go('/contact')}>{tNav('contact')}</div>
       </div>
 

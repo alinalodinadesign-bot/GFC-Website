@@ -10,7 +10,18 @@ const logos = [
   { file: "/logos/logo_makeup.svg",       alt: "Makeup",      h: 44 },
 ];
 
-export default async function Partners() {
+function LogoImg({ file, alt, h }) {
+  return (
+    <img
+      src={file}
+      alt={alt}
+      loading="lazy"
+      style={{ height: h, width: 'auto', display: 'block', opacity: 0.85 }}
+    />
+  );
+}
+
+export default async function Partners({ variant = 'strip' }) {
   const t = await getTranslations('partners');
 
   return (
@@ -25,29 +36,33 @@ export default async function Partners() {
         </p>
       </div>
 
-      {/* Logo strip */}
-      <div className="partners-logos" style={{
-        borderTop: '1px solid var(--ink)',
-        paddingTop: 56,
-        paddingBottom: 24,
-        maxWidth: 1440,
-        margin: '0 auto',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '32px 48px',
-      }}>
-        {logos.map(({ file, alt, h }) => (
-          <img
-            key={file}
-            src={file}
-            alt={alt}
-            loading="lazy"
-            style={{ height: h, width: 'auto', display: 'block', opacity: 0.85 }}
-          />
-        ))}
-      </div>
+      {variant === 'rows' ? (
+        /* Dedicated page: 4 logos on the first row, 3 on the second */
+        <div className="partners-logos-rows">
+          <div className="partners-logo-row">
+            {logos.slice(0, 4).map(l => <LogoImg key={l.file} {...l} />)}
+          </div>
+          <div className="partners-logo-row">
+            {logos.slice(4).map(l => <LogoImg key={l.file} {...l} />)}
+          </div>
+        </div>
+      ) : (
+        /* Homepage: single wrapping strip */
+        <div className="partners-logos" style={{
+          borderTop: '1px solid var(--ink)',
+          paddingTop: 56,
+          paddingBottom: 24,
+          maxWidth: 1440,
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '32px 48px',
+        }}>
+          {logos.map(l => <LogoImg key={l.file} {...l} />)}
+        </div>
+      )}
     </section>
   );
 }

@@ -36,32 +36,20 @@ export default function Nav({ mode = 'auto' }) {
   const isProject = pathname.startsWith('/projects');
   const isContact = pathname === '/contact';
   const isEvent = pathname === '/event';
+  const isApply = pathname === '/apply';
+  const isPartners = pathname === '/partners';
+  const isDarkHeader = isEvent || isApply;
 
   const navClass = [
     'nav',
     mode === 'ink' ? 'is-solid-ink' : '',
     mode === 'paper' ? 'is-solid' : '',
-    mode === 'auto' && isEvent ? 'is-solid-ink' : '',
-    mode === 'auto' && !isEvent && atTop && isHome ? 'is-over-dark' : '',
-    mode === 'auto' && !isEvent && (!atTop || !isHome) ? 'is-solid' : '',
+    mode === 'auto' && isDarkHeader ? 'is-solid-ink' : '',
+    mode === 'auto' && !isDarkHeader && atTop && isHome ? 'is-over-dark' : '',
+    mode === 'auto' && !isDarkHeader && (!atTop || !isHome) ? 'is-solid' : '',
   ].join(' ');
 
-  const isOver = mode === 'ink' || isEvent || (mode === 'auto' && atTop && isHome);
-
-  const goAnchor = (sectionId) => (e) => {
-    e.preventDefault();
-    setShowProjects(false);
-    const scrollTo = () => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
-    if (isHome) {
-      scrollTo();
-    } else {
-      router.push('/');
-      setTimeout(scrollTo, 80);
-    }
-  };
+  const isOver = mode === 'ink' || isDarkHeader || (mode === 'auto' && atTop && isHome);
 
   const switchLocale = (newLocale) => {
     router.replace(pathname, { locale: newLocale });
@@ -98,8 +86,8 @@ export default function Nav({ mode = 'auto' }) {
         </div>
         <Link href="/event" className={`nav-link${isEvent ? ' is-active' : ''}`}>{t('event')}</Link>
         <Link href="/gallery" className={`nav-link${pathname === '/gallery' ? ' is-active' : ''}`}>{t('gallery')}</Link>
-        <a href="#partners" onClick={goAnchor('partners')} className="nav-link">{t('partners')}</a>
-        <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link">{t('apply')}</a>
+        <Link href="/partners" className={`nav-link${isPartners ? ' is-active' : ''}`}>{t('partners')}</Link>
+        <Link href="/apply" className={`nav-link${isApply ? ' is-active' : ''}`}>{t('apply')}</Link>
         <Link href="/contact" className={`nav-link ${isContact ? 'is-active' : ''}`}>{t('contact')}</Link>
       </nav>
 
@@ -109,9 +97,9 @@ export default function Nav({ mode = 'auto' }) {
           <span className="sep">/</span>
           <button className={locale === 'ru' ? 'is-active' : ''} onClick={() => switchLocale('ru')}>RU</button>
         </div>
-        <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link" style={{ borderBottom: '1px solid currentColor', paddingBottom: 4 }}>
+        <Link href="/apply" className="nav-link" style={{ borderBottom: '1px solid currentColor', paddingBottom: 4 }}>
           {t('applyNow')}
-        </a>
+        </Link>
         <NavMobileToggle isLight={isOver} />
       </div>
     </header>
