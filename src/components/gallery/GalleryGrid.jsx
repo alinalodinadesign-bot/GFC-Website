@@ -173,7 +173,9 @@ export default function GalleryGrid({ media }) {
 
           {viewable.length > 1 && (
             <button onClick={e => { e.stopPropagation(); prev(); }}
-              style={{ ...navBtn(), position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)' }}>←</button>
+              style={{ ...navBtn(), position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)' }}>
+              <span style={{ display: 'flex', transform: 'rotate(180deg)' }}><Arrow size={60} /></span>
+            </button>
           )}
           {viewable.length > 1 && (
             <button onClick={e => { e.stopPropagation(); next(); }}
