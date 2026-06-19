@@ -54,6 +54,7 @@ export default function MobileMenu() {
         <div className="item" onClick={go('/event')}>{tNav('event')}</div>
         <div className="item" onClick={go('/gallery')}>{tNav('gallery')}</div>
         <div className="item" onClick={go('/partners')}>{tNav('partners')}</div>
+        <div className="item" onClick={go('/press')}>{tNav('press')}</div>
         <div className="item" onClick={go('/apply')}>{tNav('apply')}</div>
         <div className="item" onClick={go('/contact')}>{tNav('contact')}</div>
       </div>

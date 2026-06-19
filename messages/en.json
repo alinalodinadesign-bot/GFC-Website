@@ -7,6 +7,7 @@
     "gallery": "Gallery",
     "partners": "Partners",
     "apply": "Apply",
+    "press": "Press",
     "contact": "Contact",
     "applyNow": "Apply now"
   },
@@ -151,7 +152,17 @@
     "legal": {
       "title": "Legal | Global Fashion Code",
       "description": "Privacy Policy, Cookie Policy, Terms & Conditions and Legal Notice for Global Fashion Code."
+    },
+    "press": {
+      "title": "Press | Global Fashion Code",
+      "description": "Global Fashion Code in the media — featured articles and press coverage."
     }
+  },
+  "press": {
+    "eyebrow": "Press · Media Coverage",
+    "titleLine1": "In the",
+    "titleEm": "press",
+    "readMore": "Read more ↗"
   },
   "projectPage": {
     "meta": "Project / GFC Universe",

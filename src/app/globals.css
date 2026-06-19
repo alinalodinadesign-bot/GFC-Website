@@ -2556,3 +2556,74 @@ html[lang="ru"] h2 {
 @media (max-width: 960px) {
   .apply-cta-page { padding-top: 24px; }
 }
+
+/* ==========================================================
+   PRESS PAGE
+   ========================================================== */
+.press-page { background: #fff; }
+.press-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 40px 80px;
+}
+.press-header { margin-bottom: 64px; }
+
+.press-list { display: flex; flex-direction: column; }
+
+.press-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity 0.2s;
+}
+.press-card:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+.press-card:hover { opacity: 0.7; }
+
+.press-card-num {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  white-space: nowrap;
+  align-self: flex-start;
+  padding-top: 6px;
+}
+
+.press-card-body { display: flex; flex-direction: column; gap: 12px; }
+.press-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.press-card-img {
+  width: clamp(160px, 18vw, 260px);
+  flex-shrink: 0;
+}
+.press-card-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+.press-card:hover .press-card-img img { filter: grayscale(0%); }
+
+@media (max-width: 768px) {
+  .press-inner { padding: 120px 20px 60px; }
+  .press-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 28px 0;
+  }
+  .press-card-num { align-self: unset; padding-top: 0; }
+  .press-card-img { width: 100%; }
+}

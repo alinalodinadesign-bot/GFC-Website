@@ -7,6 +7,7 @@
     "gallery": "Галерея",
     "partners": "Партнёры",
     "apply": "Подать заявку",
+    "press": "Пресса",
     "contact": "Контакты",
     "applyNow": "Подать заявку"
   },
@@ -151,7 +152,17 @@
     "legal": {
       "title": "Правовая информация | Global Fashion Code",
       "description": "Политика конфиденциальности, Cookie-политика, Условия использования и Правовое уведомление Global Fashion Code."
+    },
+    "press": {
+      "title": "Пресса | Global Fashion Code",
+      "description": "Global Fashion Code в СМИ — публикации и пресс-материалы."
     }
+  },
+  "press": {
+    "eyebrow": "Пресса · Публикации в СМИ",
+    "titleLine1": "В",
+    "titleEm": "прессе",
+    "readMore": "Читать ↗"
   },
   "projectPage": {
     "meta": "Проект / Вселенная GFC",
