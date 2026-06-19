@@ -2572,9 +2572,10 @@ html[lang="ru"] h2 {
 
 .press-card {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto 1fr;
   align-items: start;
-  gap: 32px;
+  column-gap: 32px;
+  row-gap: 0;
   padding: 40px 0;
   border-bottom: 1px solid rgba(0,0,0,0.08);
   text-decoration: none;
@@ -2608,6 +2609,7 @@ html[lang="ru"] h2 {
 .press-card-img {
   width: clamp(160px, 18vw, 260px);
   flex-shrink: 0;
+  margin-right: 28px;
 }
 .press-card-img img {
   width: 100%;

@@ -39,12 +39,12 @@ export default function PressClient({ readMore }) {
           className="press-card"
         >
           <span className="press-card-num">( {a.num} )</span>
+          <div className="press-card-img">
+            <img src={a.img} alt={a.title} loading="lazy" />
+          </div>
           <div className="press-card-body">
             <h2 className="press-card-title">{a.title}</h2>
             <span className="link-line">{readMore}</span>
-          </div>
-          <div className="press-card-img">
-            <img src={a.img} alt={a.title} loading="lazy" />
           </div>
         </a>
       ))}
