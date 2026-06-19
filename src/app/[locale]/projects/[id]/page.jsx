@@ -1,5 +1,6 @@
 'use client';
 
+import { Fragment } from 'react';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
@@ -96,7 +97,12 @@ export default function ProjectDetailPage() {
 
             {p.audience && (
               <p className="proj-overview-audience">
-                {p.audience.split('·').map(s => `( ${s.trim()} )`).join(' · ')}
+                {p.audience.split('·').map((s, i) => (
+                  <Fragment key={i}>
+                    {i > 0 && ' · '}
+                    <span style={{ whiteSpace: 'nowrap' }}>( {s.trim()} )</span>
+                  </Fragment>
+                ))}
               </p>
             )}
           </div>
