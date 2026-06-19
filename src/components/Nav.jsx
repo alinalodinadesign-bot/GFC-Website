@@ -38,7 +38,8 @@ export default function Nav({ mode = 'auto' }) {
   const isEvent = pathname === '/event';
   const isApply = pathname === '/apply';
   const isPartners = pathname === '/partners';
-  const isDarkHeader = isEvent || isApply;
+  const isGallery = pathname === '/gallery';
+  const isDarkHeader = isEvent || isApply || isGallery;
 
   const navClass = [
     'nav',

@@ -77,8 +77,17 @@ const navBtn = extra => ({
   ...extra,
 })
 
+function Spinner() {
+  return (
+    <div className="gallery-spinner" role="status">
+      <div className="gallery-spinner-ring" />
+    </div>
+  )
+}
+
 export default function GalleryGrid({ media }) {
-  const [lb, setLb] = useState(null) // { idx } into viewable list
+  const [lb, setLb] = useState(null)
+  const [imgLoaded, setImgLoaded] = useState(false)
 
   // Lightbox navigates every photo and playable video, in display order
   const viewable = media.filter(
@@ -86,9 +95,9 @@ export default function GalleryGrid({ media }) {
          (m.mediaType === 'video' && videoEmbedSrc(m.videoUrl))
   )
 
-  const closeLb = () => setLb(null)
-  const prev = () => setLb(l => ({ idx: (l.idx - 1 + viewable.length) % viewable.length }))
-  const next = () => setLb(l => ({ idx: (l.idx + 1) % viewable.length }))
+  const closeLb = () => { setLb(null); setImgLoaded(false); }
+  const prev = () => { setImgLoaded(false); setLb(l => ({ idx: (l.idx - 1 + viewable.length) % viewable.length })); }
+  const next = () => { setImgLoaded(false); setLb(l => ({ idx: (l.idx + 1) % viewable.length })); }
 
   useEffect(() => {
     if (!lb) return
@@ -159,16 +168,21 @@ export default function GalleryGrid({ media }) {
               />
             </div>
           ) : (
-            <Image
-              src={urlFor(viewable[lb.idx].photo).width(1600).auto('format').url()}
-              alt={viewable[lb.idx].title || ''}
-              width={0}
-              height={0}
-              sizes="88vw"
-              onClick={e => e.stopPropagation()}
-              style={{ maxWidth: '88vw', maxHeight: '88vh', width: 'auto', height: 'auto',
-                objectFit: 'contain', boxShadow: '0 40px 100px rgba(0,0,0,0.9)' }}
-            />
+            <>
+              {!imgLoaded && <Spinner />}
+              <Image
+                src={urlFor(viewable[lb.idx].photo).width(1600).auto('format').url()}
+                alt={viewable[lb.idx].title || ''}
+                width={0}
+                height={0}
+                sizes="88vw"
+                onClick={e => e.stopPropagation()}
+                onLoad={() => setImgLoaded(true)}
+                style={{ maxWidth: '88vw', maxHeight: '88vh', width: 'auto', height: 'auto',
+                  objectFit: 'contain', boxShadow: '0 40px 100px rgba(0,0,0,0.9)',
+                  opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.2s' }}
+              />
+            </>
           )}
 
           {viewable.length > 1 && (

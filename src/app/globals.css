@@ -1967,6 +1967,25 @@ a { color: inherit; text-decoration: none; }
 .footer-email-wrap { position: relative; display: inline-flex; }
 .footer-email-wrap .contact-copy-tip { background: var(--paper); color: var(--ink); }
 
+/* Gallery lightbox spinner */
+.gallery-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.gallery-spinner-ring {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-top-color: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: gal-spin 0.7s linear infinite;
+}
+@keyframes gal-spin { to { transform: rotate(360deg); } }
+
 /* ==========================================================
    COMMON MODAL
    ========================================================== */
