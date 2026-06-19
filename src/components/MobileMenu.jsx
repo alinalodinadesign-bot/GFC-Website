@@ -46,7 +46,6 @@ export default function MobileMenu() {
       <button className="mobile-menu-close" onClick={() => setOpen(false)}>{t('close')}</button>
 
       <div className="mobile-menu-list">
-        <div className="item" onClick={go('/')}>{t('home')}</div>
         <div className="item" onClick={go('/')}>{tNav('about')}</div>
         <div className="item" onClick={go('/')}>{tNav('projects')}</div>
         {GFC_DATA.projects.map((p) => (

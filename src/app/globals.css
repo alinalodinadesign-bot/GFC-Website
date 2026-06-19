@@ -1914,7 +1914,11 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   letter-spacing: -0.02em;
   font-size: clamp(18px, 2vw, 28px);
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
 }
+.contact-list li a.val:hover { opacity: 0.6; }
 
 /* ==========================================================
    COMMON MODAL

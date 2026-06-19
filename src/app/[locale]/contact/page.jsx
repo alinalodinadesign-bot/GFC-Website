@@ -20,7 +20,14 @@ export default async function ContactPage() {
               <li>
                 <div className="label">{t('instagram.label')}</div>
                 <div className="contact-list-row">
-                  <div className="val">{t('instagram.value')}</div>
+                  <a
+                    className="val"
+                    href="https://instagram.com/globalfashioncode"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('instagram.value')}
+                  </a>
                   <a
                     className="link-line ix"
                     href="https://instagram.com/globalfashioncode"
@@ -34,7 +41,9 @@ export default async function ContactPage() {
               <li>
                 <div className="label">{t('email.label')}</div>
                 <div className="contact-list-row">
-                  <div className="val">{t('email.value')}</div>
+                  <a className="val" href="mailto:info@globalfashioncode.com">
+                    {t('email.value')}
+                  </a>
                   <a
                     className="link-line ix"
                     href="mailto:info@globalfashioncode.com"
