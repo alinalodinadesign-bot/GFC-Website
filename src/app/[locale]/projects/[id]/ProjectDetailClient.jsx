@@ -70,6 +70,7 @@ export default function ProjectDetailPage() {
               ))}
             </div>
 
+            {/* temporarily hidden — will be re-enabled later
             {p.materialsUrl && (
               <a
                 href={p.materialsUrl}
@@ -80,6 +81,7 @@ export default function ProjectDetailPage() {
                 {t('viewMaterials')}
               </a>
             )}
+            */}
 
             {p.categories?.length > 0 && (
               <p className="proj-overview-categories">
