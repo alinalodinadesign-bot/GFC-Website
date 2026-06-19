@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import ContactList from '@/components/ContactList';
 
 export default async function ContactPage() {
   const t = await getTranslations('contact');
@@ -16,43 +17,7 @@ export default async function ContactPage() {
             <p className="t-body-lg" style={{ maxWidth: '48ch', color: 'var(--fg-2)', marginBottom: 48 }}>
               {t('description')}
             </p>
-            <ul className="contact-list">
-              <li>
-                <div className="label">{t('instagram.label')}</div>
-                <div className="contact-list-row">
-                  <a
-                    className="val"
-                    href="https://instagram.com/globalfashioncode"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t('instagram.value')}
-                  </a>
-                  <a
-                    className="link-line ix"
-                    href="https://instagram.com/globalfashioncode"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t('instagram.link')}
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="label">{t('email.label')}</div>
-                <div className="contact-list-row">
-                  <a className="val" href="mailto:info@globalfashioncode.com">
-                    {t('email.value')}
-                  </a>
-                  <a
-                    className="link-line ix"
-                    href="mailto:info@globalfashioncode.com"
-                  >
-                    {t('email.link')}
-                  </a>
-                </div>
-              </li>
-            </ul>
+            <ContactList />
           </div>
 
           {/* Right — photo */}

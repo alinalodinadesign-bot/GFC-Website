@@ -119,7 +119,8 @@
     "email": {
       "label": "/02 Email",
       "value": "info@globalfashioncode.com",
-      "link": "Написать ↗"
+      "link": "Копировать ↗",
+      "copied": "Скопировано"
     }
   },
   "projectPage": {

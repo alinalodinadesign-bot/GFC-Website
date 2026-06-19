@@ -1918,7 +1918,45 @@ a { color: inherit; text-decoration: none; }
   text-decoration: none;
   transition: opacity 0.2s;
 }
-.contact-list li a.val:hover { opacity: 0.6; }
+/* .val used as a button — strip native button chrome */
+.contact-list li button.val {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.contact-list li a.val:hover,
+.contact-list li button.val:hover { opacity: 0.6; }
+
+/* .link-line used as a button (Copy) — match the anchor styling */
+.contact-list li button.link-line {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Copy-to-clipboard tooltip */
+.contact-copy-wrap { position: relative; display: inline-flex; }
+.contact-copy-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.contact-copy-tip.is-visible { opacity: 1; }
 
 /* ==========================================================
    COMMON MODAL
@@ -2172,7 +2210,9 @@ a { color: inherit; text-decoration: none; }
   .contact-inner { padding: 0 16px; }
   .contact-layout { grid-template-columns: 1fr; gap: 40px; }
   .contact-photo { aspect-ratio: 4 / 3; }
-  .contact-list li .ix { display: none; }
+  /* Stack the value and its action link vertically on mobile */
+  .contact-list-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .contact-copy-wrap { display: inline-flex; }
 
   /* ── Внутренние страницы — H2 = 36px на мобилке (EN) ──────────────────
      !important нужен чтобы перекрыть инлайн-стили компонентов.
