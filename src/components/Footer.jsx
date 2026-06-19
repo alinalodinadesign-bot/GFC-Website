@@ -1,14 +1,38 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+
+const EMAIL = 'info@globalfashioncode.com';
+
+function copyEmail(setCopied) {
+  (async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = EMAIL;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch {}
+      document.body.removeChild(ta);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  })();
+}
 
 const meta = { fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' };
 const legal = { fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', cursor: 'pointer', textDecoration: 'none', transition: 'color 0.2s' };
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const tc = useTranslations('contact');
   const links = t.raw('links');
+  const [copied, setCopied] = useState(false);
 
   return (
     <footer style={{ background: 'var(--ink)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
@@ -48,7 +72,18 @@ export default function Footer() {
           >
             @globalfashioncode
           </a>
-          <span style={meta}>info@globalfashioncode.com</span>
+          <span className="footer-email-wrap">
+            <button
+              type="button"
+              onClick={() => copyEmail(setCopied)}
+              style={{ ...meta, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'none' }}
+            >
+              {EMAIL}
+            </button>
+            <span className={`contact-copy-tip${copied ? ' is-visible' : ''}`} role="status">
+              {tc('email.copied')}
+            </span>
+          </span>
         </div>
       </div>
 

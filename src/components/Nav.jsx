@@ -87,7 +87,6 @@ export default function Nav({ mode = 'auto' }) {
         <Link href="/event" className={`nav-link${isEvent ? ' is-active' : ''}`}>{t('event')}</Link>
         <Link href="/gallery" className={`nav-link${pathname === '/gallery' ? ' is-active' : ''}`}>{t('gallery')}</Link>
         <Link href="/partners" className={`nav-link${isPartners ? ' is-active' : ''}`}>{t('partners')}</Link>
-        <Link href="/apply" className={`nav-link${isApply ? ' is-active' : ''}`}>{t('apply')}</Link>
         <Link href="/contact" className={`nav-link ${isContact ? 'is-active' : ''}`}>{t('contact')}</Link>
       </nav>
 

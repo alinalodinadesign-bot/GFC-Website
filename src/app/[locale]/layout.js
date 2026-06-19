@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import localFont from 'next/font/local';
@@ -34,11 +34,13 @@ const gardena = localFont({
   display: 'swap',
 });
 
-export const metadata = {
-  title: 'Global Fashion Code',
-  // Hero image preloaded via <link rel="preload"> below
-  description: 'An exclusive three-day fashion event — connecting talent with opportunity.',
-};
+export async function generateMetadata() {
+  const t = await getTranslations('meta');
+  return {
+    title: t('home.title'),
+    description: t('home.description'),
+  };
+}
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;

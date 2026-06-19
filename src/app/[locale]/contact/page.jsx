@@ -1,6 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 import ContactList from '@/components/ContactList';
 
+export async function generateMetadata() {
+  const t = await getTranslations('meta');
+  return { title: t('contact.title'), description: t('contact.description') };
+}
+
 export default async function ContactPage() {
   const t = await getTranslations('contact');
 

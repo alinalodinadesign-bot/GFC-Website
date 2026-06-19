@@ -123,6 +123,36 @@
       "copied": "Copied to clipboard"
     }
   },
+  "meta": {
+    "home": {
+      "title": "Global Fashion Code — International Fashion Showcase",
+      "description": "An international fashion showcase connecting models, designers, photographers and beauty creatives with industry leaders through runway, education, castings and professional networking."
+    },
+    "event": {
+      "title": "Upcoming Event | Global Fashion Code",
+      "description": "Discover the next Global Fashion Code event — runway shows, castings, education and networking for fashion professionals."
+    },
+    "gallery": {
+      "title": "Gallery | Global Fashion Code",
+      "description": "Browse photos and videos from past Global Fashion Code events — runway, backstage, castings and awards."
+    },
+    "partners": {
+      "title": "Partners | Global Fashion Code",
+      "description": "A curated network of agencies, media, beauty houses and sponsors — invited season by season."
+    },
+    "apply": {
+      "title": "Apply | Global Fashion Code",
+      "description": "Submit your portfolio for consideration at the upcoming Global Fashion Code event."
+    },
+    "contact": {
+      "title": "Contact | Global Fashion Code",
+      "description": "Get in touch with Global Fashion Code — applications, press, partnership and general enquiries."
+    },
+    "legal": {
+      "title": "Legal | Global Fashion Code",
+      "description": "Privacy Policy, Cookie Policy, Terms & Conditions and Legal Notice for Global Fashion Code."
+    }
+  },
   "projectPage": {
     "meta": "Project / GFC Universe",
     "applyNow": "Apply now",

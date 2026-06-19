@@ -123,6 +123,36 @@
       "copied": "Скопировано"
     }
   },
+  "meta": {
+    "home": {
+      "title": "Global Fashion Code — Международный fashion-showcase",
+      "description": "Международный fashion-showcase, объединяющий моделей, дизайнеров, фотографов и beauty-креативщиков с лидерами индустрии через подиум, образование, кастинги и нетворкинг."
+    },
+    "event": {
+      "title": "Ближайшее событие | Global Fashion Code",
+      "description": "Узнайте о ближайшем мероприятии Global Fashion Code — показы, кастинги, образование и нетворкинг для fashion-профессионалов."
+    },
+    "gallery": {
+      "title": "Галерея | Global Fashion Code",
+      "description": "Фото и видео с прошедших мероприятий Global Fashion Code — подиум, бэкстейдж, кастинги и награды."
+    },
+    "partners": {
+      "title": "Партнёры | Global Fashion Code",
+      "description": "Отборная сеть агентств, медиа, beauty-домов и спонсоров — приглашаются каждый сезон."
+    },
+    "apply": {
+      "title": "Подать заявку | Global Fashion Code",
+      "description": "Отправьте своё портфолио для участия в ближайшем мероприятии Global Fashion Code."
+    },
+    "contact": {
+      "title": "Контакты | Global Fashion Code",
+      "description": "Свяжитесь с Global Fashion Code — заявки, пресса, партнёрство и общие вопросы."
+    },
+    "legal": {
+      "title": "Правовая информация | Global Fashion Code",
+      "description": "Политика конфиденциальности, Cookie-политика, Условия использования и Правовое уведомление Global Fashion Code."
+    }
+  },
   "projectPage": {
     "meta": "Проект / Вселенная GFC",
     "applyNow": "Подать заявку",
