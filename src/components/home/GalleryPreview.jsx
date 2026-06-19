@@ -64,7 +64,6 @@ export default function GalleryPreview({ title = null }) {
 
     xRef.current = 0;
     let lastTs   = null;
-    let halfWidth = 0;
     let rafId    = null;
 
     const tick = (ts) => {
@@ -72,6 +71,9 @@ export default function GalleryPreview({ title = null }) {
       const dt = (ts - lastTs) / 1000;
       lastTs = ts;
 
+      // Recompute each frame so scrolling self-starts once images finish
+      // loading (on first visit scrollWidth is ~0 until images decode).
+      const halfWidth = track.scrollWidth / 2;
       if (halfWidth > 0) {
         const speed = halfWidth / duration;
         xRef.current -= speed * dt;
@@ -82,12 +84,9 @@ export default function GalleryPreview({ title = null }) {
       rafId = requestAnimationFrame(tick);
     };
 
-    const timer = setTimeout(() => {
-      halfWidth = track.scrollWidth / 2;
-      rafId = requestAnimationFrame(tick);
-    }, 150);
+    rafId = requestAnimationFrame(tick);
 
-    return () => { clearTimeout(timer); if (rafId) cancelAnimationFrame(rafId); };
+    return () => { if (rafId) cancelAnimationFrame(rafId); };
   }, [tab, duration, useDrag]);
 
   /* ── Reset progress bar on tab switch (Safari) ── */
