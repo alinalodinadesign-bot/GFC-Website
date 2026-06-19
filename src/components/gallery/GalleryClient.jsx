@@ -5,6 +5,21 @@ import { useTranslations } from 'next-intl'
 import GalleryGrid from './GalleryGrid'
 import GalleryTabs from './GalleryTabs'
 
+// Flatten a document's photo array + video links into a single media list
+function toMedia(doc) {
+  const photos = (doc.gallery || []).map((img, i) => ({
+    _id: img._key || `${doc._id}-p${i}`,
+    mediaType: 'photo',
+    photo: img,
+  }))
+  const vids = (doc.videos || []).map((url, i) => ({
+    _id: `${doc._id}-v${i}`,
+    mediaType: 'video',
+    videoUrl: url,
+  }))
+  return [...photos, ...vids]
+}
+
 export default function GalleryClient({ events }) {
   const t = useTranslations('gallery')
   const [activeEvent, setActiveEvent] = useState(events[0]?._id ?? null)
@@ -14,9 +29,9 @@ export default function GalleryClient({ events }) {
 
   const allMedia = currentEvent
     ? [
-        ...(currentEvent.media || []),
+        ...toMedia(currentEvent),
         ...(currentEvent.subcategories || []).flatMap(s =>
-          activeSubcat === null || activeSubcat === s._id ? s.media || [] : []
+          activeSubcat === null || activeSubcat === s._id ? toMedia(s) : []
         ),
       ]
     : []
