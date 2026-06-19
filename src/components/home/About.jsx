@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { getTranslations } from 'next-intl/server';
 
 export default async function About() {
@@ -47,7 +48,8 @@ export default async function About() {
           </p>
 
           <p style={{
-            color: 'var(--ink)',
+            color: '#fff',
+            mixBlendMode: 'difference',
             fontSize: 11,
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
@@ -56,7 +58,12 @@ export default async function About() {
             margin: '14px 0 0',
             lineHeight: 1.8,
           }}>
-            {t('audience')}
+            {t('audience').split(' · ').map((chip, i) => (
+              <Fragment key={i}>
+                {i > 0 && ' · '}
+                <span style={{ whiteSpace: 'nowrap' }}>{chip}</span>
+              </Fragment>
+            ))}
           </p>
         </div>
 
