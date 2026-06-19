@@ -59,12 +59,12 @@ export default function MobileMenu() {
 
       <div className="mobile-menu-list">
         <div className="item" onClick={go('/')}>{t('home')}</div>
+        <div className="item" onClick={go('/')}>{tNav('about')}</div>
         <div className="item" onClick={go('/')}>{tNav('projects')}</div>
         {GFC_DATA.projects.map((p) => (
           <div key={p.id} className="sub" onClick={go('/projects/' + p.id)}>· {p.name}</div>
         ))}
-        <div className="item" onClick={goAnchor('about')}>{tNav('about')}</div>
-        <div className="item" onClick={goAnchor('event')}>{tNav('event')}</div>
+        <div className="item" onClick={go('/event')}>{tNav('event')}</div>
         <div className="item" onClick={go('/gallery')}>{tNav('gallery')}</div>
         <div className="item" onClick={goAnchor('partners')}>{tNav('partners')}</div>
         <div className="item" onClick={goAnchor('apply-cta')}>{tNav('apply')}</div>

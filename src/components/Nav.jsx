@@ -35,16 +35,18 @@ export default function Nav({ mode = 'auto' }) {
   const isHome = pathname === '/';
   const isProject = pathname.startsWith('/projects');
   const isContact = pathname === '/contact';
+  const isEvent = pathname === '/event';
 
   const navClass = [
     'nav',
     mode === 'ink' ? 'is-solid-ink' : '',
     mode === 'paper' ? 'is-solid' : '',
-    mode === 'auto' && atTop && isHome ? 'is-over-dark' : '',
-    mode === 'auto' && (!atTop || !isHome) ? 'is-solid' : '',
+    mode === 'auto' && isEvent ? 'is-solid-ink' : '',
+    mode === 'auto' && !isEvent && atTop && isHome ? 'is-over-dark' : '',
+    mode === 'auto' && !isEvent && (!atTop || !isHome) ? 'is-solid' : '',
   ].join(' ');
 
-  const isOver = mode === 'ink' || (mode === 'auto' && atTop && isHome);
+  const isOver = mode === 'ink' || isEvent || (mode === 'auto' && atTop && isHome);
 
   const goAnchor = (sectionId) => (e) => {
     e.preventDefault();
@@ -74,6 +76,7 @@ export default function Nav({ mode = 'auto' }) {
       </div>
 
       <nav className="nav-links" aria-label="Primary">
+        <Link href="/" className={`nav-link${isHome ? ' is-active' : ''}`}>{t('about')}</Link>
         <div ref={projectsRef} style={{ position: 'relative' }}>
           <button
             className={`nav-link ${isProject ? 'is-active' : ''}`}
@@ -93,8 +96,7 @@ export default function Nav({ mode = 'auto' }) {
             </ul>
           </div>
         </div>
-        <a href="#about" onClick={goAnchor('about')} className="nav-link">{t('about')}</a>
-        <a href="#event" onClick={goAnchor('event')} className="nav-link">{t('event')}</a>
+        <Link href="/event" className={`nav-link${isEvent ? ' is-active' : ''}`}>{t('event')}</Link>
         <Link href="/gallery" className={`nav-link${pathname === '/gallery' ? ' is-active' : ''}`}>{t('gallery')}</Link>
         <a href="#partners" onClick={goAnchor('partners')} className="nav-link">{t('partners')}</a>
         <a href="#apply-cta" onClick={goAnchor('apply-cta')} className="nav-link">{t('apply')}</a>

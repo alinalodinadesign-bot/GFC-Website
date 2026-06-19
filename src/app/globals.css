@@ -2440,3 +2440,13 @@ html[lang="ru"] h2 {
   html[lang="ru"] .nav-mobile-toggle { display: inline-flex !important; }
   html[lang="ru"] .nav-lang { display: inline-flex !important; }
 }
+
+/* ==========================================================
+   UPCOMING EVENT PAGE — dark, behind fixed dark header
+   ========================================================== */
+.event-page { background: var(--ink); }
+/* Desktop: .event already has 128px top padding (clears the fixed nav).
+   Mobile: its 40px top padding is too small for the fixed header. */
+@media (max-width: 960px) {
+  .event-page .event { padding-top: 96px; }
+}
