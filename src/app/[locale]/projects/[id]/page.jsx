@@ -2,11 +2,12 @@
 
 import { Fragment } from 'react';
 import { useParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import ApplyCta from '@/components/home/ApplyCta';
 import GalleryPreview from '@/components/home/GalleryPreview';
 import { GFC_DATA } from '@/lib/data';
+import { projectsContentRu } from '@/lib/projectsContentRu';
 
 const cardPhotos = [
   '/cards/01.jpg',
@@ -19,10 +20,17 @@ const cardPhotos = [
 export default function ProjectDetailPage() {
   const { id } = useParams();
   const t = useTranslations('projectPage');
+  const locale = useLocale();
 
-  const p = GFC_DATA.projects.find(x => x.id === id) || GFC_DATA.projects[0];
-  const pIdx = GFC_DATA.projects.findIndex(x => x.id === p.id);
-  const others = GFC_DATA.projects.filter(x => x.id !== p.id);
+  const base = GFC_DATA.projects.find(x => x.id === id) || GFC_DATA.projects[0];
+  // Overlay Russian body text when on the RU locale
+  const ru = locale === 'ru' ? projectsContentRu[base.id] : null;
+  const p = ru ? { ...base, ...ru } : base;
+  const pIdx = GFC_DATA.projects.findIndex(x => x.id === base.id);
+  const others = GFC_DATA.projects.filter(x => x.id !== base.id).map(o => {
+    const oru = locale === 'ru' ? projectsContentRu[o.id] : null;
+    return oru ? { ...o, ...oru } : o;
+  });
 
   return (
     <main className="proj">
@@ -69,7 +77,7 @@ export default function ProjectDetailPage() {
                 rel="noopener noreferrer"
                 className="proj-overview-materials-btn"
               >
-                View Materials
+                {t('viewMaterials')}
               </a>
             )}
 

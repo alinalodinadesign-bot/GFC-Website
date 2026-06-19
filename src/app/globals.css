@@ -1633,8 +1633,9 @@ a { color: inherit; text-decoration: none; }
 }
 .proj-hero {
   position: relative;
-  height: 78vh;
-  min-height: 540px;
+  /* min-height (not fixed height) so long titles grow the section instead
+     of overflowing and getting clipped under the fixed header */
+  min-height: max(540px, 78vh);
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
