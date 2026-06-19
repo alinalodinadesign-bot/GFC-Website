@@ -4,9 +4,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.js');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  turbopack: {
-    root: '/Users/alina/gfc-next',
-  },
   images: {
     remotePatterns: [
       {
