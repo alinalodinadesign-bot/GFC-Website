@@ -54,7 +54,7 @@ export default async function LocaleLayout({ children, params }) {
         <style dangerouslySetInnerHTML={{ __html: `
           .projects-dropdown { display: none; }
           .hero-script-mobile { display: none; }
-          @media (max-width: 960px) {
+          @media (max-width: 1024px) {
             .nav-links { display: none; }
             .nav-right > *:not(.nav-mobile-toggle):not(.nav-lang) { display: none; }
           }

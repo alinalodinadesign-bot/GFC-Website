@@ -2032,6 +2032,15 @@ a { color: inherit; text-decoration: none; }
 /* ==========================================================
    MOBILE
    ========================================================== */
+/* Tablet + mobile: switch to burger menu */
+@media (max-width: 1024px) {
+  .nav-links { display: none !important; }
+  .nav-right > *:not(.nav-mobile-toggle):not(.nav-lang) { display: none !important; }
+  .nav-mobile-toggle { display: inline-flex !important; }
+  .nav-mobile-toggle.is-light { color: var(--paper); }
+  .nav-lang { display: inline-flex !important; }
+}
+
 @media (max-width: 960px) {
   .gutter { padding-left: var(--gutter-mb); padding-right: var(--gutter-mb); }
   .section { padding: 64px 16px; }
@@ -2045,13 +2054,6 @@ a { color: inherit; text-decoration: none; }
 
   /* Apply CTA — success image block (homepage) */
   .apply-cta-right { width: 100% !important; }
-
-  /* Hide all nav items — keep only logo, EN/RU and burger */
-  .nav-links { display: none !important; }
-  .nav-right > *:not(.nav-mobile-toggle):not(.nav-lang) { display: none !important; }
-  .nav-mobile-toggle { display: inline-flex !important; }
-  .nav-mobile-toggle.is-light { color: var(--paper); }
-  .nav-lang { display: inline-flex !important; }
 
   /* Logo 1.5× smaller on mobile */
   .nav-logo { width: 83px; height: 75px; }
@@ -2505,13 +2507,6 @@ html[lang="ru"] h2 {
   .cookie-btns button { width: 100% !important; text-align: center; justify-content: center; }
 }
 
-/* Russian nav — longer words need wider breakpoint for burger */
-@media (max-width: 1023px) {
-  html[lang="ru"] .nav-links { display: none !important; }
-  html[lang="ru"] .nav-right > *:not(.nav-mobile-toggle):not(.nav-lang) { display: none !important; }
-  html[lang="ru"] .nav-mobile-toggle { display: inline-flex !important; }
-  html[lang="ru"] .nav-lang { display: inline-flex !important; }
-}
 
 /* ==========================================================
    UPCOMING EVENT PAGE — dark, behind fixed dark header
