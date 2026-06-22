@@ -1,5 +1,6 @@
 'use client';
 
+import { Fragment } from 'react';
 import { useTranslations } from 'next-intl';
 import Arrow from '@/components/Arrow';
 
@@ -67,9 +68,13 @@ export default function Hero() {
             position: 'absolute', right: 0,
             top: '50%', transform: 'translateY(-50%)',
             fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.7,
-            whiteSpace: 'nowrap',
           }}>
-            {t('eyebrowRight')}
+            {t('eyebrowRight').split('·').map((seg, i) => (
+              <Fragment key={i}>
+                {i > 0 && ' · '}
+                <span style={{ whiteSpace: 'nowrap' }}>{seg.trim()}</span>
+              </Fragment>
+            ))}
           </span>
         </div>
 
