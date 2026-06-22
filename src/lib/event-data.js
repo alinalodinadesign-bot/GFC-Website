@@ -27,13 +27,17 @@ function parseCSVRow(line) {
   return result;
 }
 
-export async function fetchEventData() {
+/**
+ * locale: 'en' | 'ru'
+ * Sheet row 2 = EN, row 3 = RU. Falls back to EN if RU row is missing.
+ */
+export async function fetchEventData(locale = 'en') {
   const url = process.env.EVENT_SHEET_CSV_URL;
   if (!url) return null;
 
   try {
     const res = await fetch(url, {
-      next: { revalidate: 300 }, // refresh every 5 minutes
+      next: { revalidate: 300 },
     });
     if (!res.ok) return null;
 
@@ -42,7 +46,8 @@ export async function fetchEventData() {
     if (lines.length < 2) return null;
 
     const headers = parseCSVRow(lines[0]);
-    const values  = parseCSVRow(lines[1]);
+    const rowIdx = locale === 'ru' && lines.length >= 3 ? 2 : 1;
+    const values  = parseCSVRow(lines[rowIdx]);
 
     const data = {};
     headers.forEach((h, i) => {

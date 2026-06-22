@@ -85,7 +85,12 @@ export default function ProjectDetailPage() {
 
             {p.categories?.length > 0 && (
               <p className="proj-overview-categories">
-                {p.categories.map(c => `( ${c} )`).join(' · ')}
+                {p.categories.map((c, i) => (
+                  <Fragment key={i}>
+                    {i > 0 && ' · '}
+                    <span style={{ whiteSpace: 'nowrap' }}>( {c} )</span>
+                  </Fragment>
+                ))}
               </p>
             )}
 

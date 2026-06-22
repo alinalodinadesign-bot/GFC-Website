@@ -1,8 +1,10 @@
+import { getLocale } from 'next-intl/server';
 import { GFC_DATA } from '@/lib/data';
 import { fetchEventData } from '@/lib/event-data';
 
 export default async function Event() {
-  const sheet   = await fetchEventData();
+  const locale  = await getLocale();
+  const sheet   = await fetchEventData(locale);
   const fb      = GFC_DATA.event; // fallback
 
   const eyebrow  = sheet?.eyebrow  || 'Upcoming Event · Spring 026';
