@@ -2506,7 +2506,7 @@ html[lang="ru"] h2 {
 }
 
 /* Russian nav — longer words need wider breakpoint for burger */
-@media (max-width: 1200px) {
+@media (max-width: 1023px) {
   html[lang="ru"] .nav-links { display: none !important; }
   html[lang="ru"] .nav-right > *:not(.nav-mobile-toggle):not(.nav-lang) { display: none !important; }
   html[lang="ru"] .nav-mobile-toggle { display: inline-flex !important; }
