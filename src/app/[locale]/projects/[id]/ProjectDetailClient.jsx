@@ -17,7 +17,7 @@ function linkify(text) {
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) parts.push(text.slice(last, m.index));
     parts.push(
-      <a key={m.index} href="https://models.com/agencies/mag-model-agent-group" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
+      <a key={m.index} href="https://models.com/agency/mag-model-agent-group" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
         Models.com
       </a>
     );
