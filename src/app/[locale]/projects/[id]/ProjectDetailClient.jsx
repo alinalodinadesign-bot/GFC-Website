@@ -9,6 +9,24 @@ import GalleryPreview from '@/components/home/GalleryPreview';
 import { GFC_DATA } from '@/lib/data';
 import { projectsContentRu } from '@/lib/projectsContentRu';
 
+function linkify(text) {
+  const re = /Models\.com/g;
+  const parts = [];
+  let last = 0;
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    parts.push(
+      <a key={m.index} href="https://models.com/agencies/mag-model-agent-group" target="_blank" rel="noopener noreferrer" className="link-line">
+        Models.com
+      </a>
+    );
+    last = re.lastIndex;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts.length > 1 ? parts : text;
+}
+
 const cardPhotos = [
   '/cards/01.jpg',
   '/cards/02.jpg',
@@ -66,7 +84,7 @@ export default function ProjectDetailPage() {
           <div className="proj-overview-inner">
             <div className="proj-overview-desc-group">
               {(Array.isArray(p.description) ? p.description : [p.description]).map((para, i) => (
-                <p key={i} className="proj-overview-desc">{para}</p>
+                <p key={i} className="proj-overview-desc">{linkify(para)}</p>
               ))}
             </div>
 
