@@ -105,6 +105,12 @@
     "tagline": "Join our world",
     "tag": "( GFC )",
     "links": ["Privacy Policy", "Terms & Conditions", "Photos & Video Content", "Media & Press Notice"],
+    "legal": {
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy",
+      "terms": "Terms & Conditions",
+      "imprint": "Legal Notice"
+    },
     "copyright": "© 2026 Global Fashion Code"
   },
   "contact": {

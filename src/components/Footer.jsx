@@ -97,10 +97,10 @@ export default function Footer() {
         gap: 16,
       }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px 24px' }}>
-          <Link href="/legal#privacy" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Privacy Policy</Link>
-          <Link href="/legal#cookies" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Cookie Policy</Link>
-          <Link href="/legal#terms" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Terms & Conditions</Link>
-          <Link href="/legal#imprint" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>Legal Notice</Link>
+          <Link href="/legal#privacy" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>{t('legal.privacy')}</Link>
+          <Link href="/legal#cookies" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>{t('legal.cookies')}</Link>
+          <Link href="/legal#terms" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>{t('legal.terms')}</Link>
+          <Link href="/legal#imprint" style={legal} onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>{t('legal.imprint')}</Link>
         </div>
         <span style={{ ...meta, opacity: 0.35 }}>{t('copyright')}</span>
       </div>
